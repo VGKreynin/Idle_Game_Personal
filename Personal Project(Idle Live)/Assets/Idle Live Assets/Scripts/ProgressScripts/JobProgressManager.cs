@@ -23,11 +23,10 @@ public class JobProgressManager : MonoBehaviour
     void Start()
     {
         //PlayerData.jobExpMaxValue[jobNumber] = 100;        
-        jobPayMultiplier = 1;
+        jobPayMultiplier = PlayerData.jobPayMultiplier[jobNumber];
         lvlValueText.text = PlayerData.jobLvlValue[jobNumber].ToString();
         progressBar = GetComponent<Slider>();
-        progressBar.value = PlayerData.jobExpCurrentValue[jobNumber];
-        //Debug.Log(jobNumber + " job = " + progressBar.value);
+        progressBar.value = PlayerData.jobExpCurrentValue[jobNumber];        
         gameManagerScr = GameObject.Find("GameManager").GetComponent<GameManager>();        
         jobRequirementsScr = GameObject.Find("Job Requirements Value").GetComponent<JobRequirements>();
         skillRequirementsScr = GameObject.Find("Skill Requirements Value").GetComponent<SkillRequirements>();

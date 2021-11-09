@@ -52,7 +52,8 @@ public class SaveLoad : MonoBehaviour
         public int currentJobReqNumber;
             //Income
             public float currentBasicJobPayment; //Use to calculate income
-            public float currentJobPayMultiplier; //Use to calculate income
+            public static float[] jobPayMultiplier = new float[8]; //Use to save current income multiplier from lvl of job
+        public float currentJobPayMultiplier; //Use to calculate income
             //Other
             public int currentJobSelectedNumber; //USed to show current job on main screen
 
@@ -116,8 +117,7 @@ public class SaveLoad : MonoBehaviour
     }
     
     private void LoadDataUpdate()
-    {
-        Debug.Log("LoadDataUpdate");
+    {        
         //Timer Data        
         PlayerData.days = data.days;
         PlayerData.years = data.years;
@@ -173,14 +173,18 @@ public class SaveLoad : MonoBehaviour
             PlayerData.jobExpCurrentValue[i] = 0;
             PlayerData.jobLvlValue[i] = 0;
             GameManager.jobsArray[i].SetActive(false); //Deactivating all jobs            
-            PlayerData.jobEnabledStatus[i] = false;
+            PlayerData.jobEnabledStatus[i] = false;            
         }
         GameManager.jobsArray[0].SetActive(true); //First job is active from the start
         PlayerData.jobEnabledStatus[0] = true;
         PlayerData.currentJobReqNumber = 1;
         PlayerData.isJobActive = false;
         //Income
-        PlayerData.currentBasicJobPayment = 0;
+            for (int i = 0; i < PlayerData.jobExpMaxValue.Length; i++)
+            {
+                PlayerData.jobPayMultiplier[i] = 1;
+            }
+            PlayerData.currentBasicJobPayment = 0;
             PlayerData.currentJobPayMultiplier = 0;
             //Other
             PlayerData.currentJobSelectedNumber = 0;

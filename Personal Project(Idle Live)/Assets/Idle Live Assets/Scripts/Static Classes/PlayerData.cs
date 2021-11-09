@@ -22,6 +22,7 @@ public static class PlayerData //Put here every variable that should be in SaveG
     public static int currentJobReqNumber; //According to this number the requiremets shows for next job
         //Income
         public static float currentBasicJobPayment; //Use to calculate income
+        public static float[] jobPayMultiplier = new float[8]; //Use to save current income multiplier from lvl of job
         public static float currentJobPayMultiplier; //Use to calculate income
         //Other
         public static int currentJobSelectedNumber; //USed to save currently selected job
