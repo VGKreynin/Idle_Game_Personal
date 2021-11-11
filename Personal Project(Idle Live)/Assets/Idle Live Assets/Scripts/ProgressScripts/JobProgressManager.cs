@@ -12,8 +12,9 @@ public class JobProgressManager : MonoBehaviour
 
     private GameManager gameManagerScr;
     private JobRequirements jobRequirementsScr;
-    private SkillRequirements skillRequirementsScr;        
-    
+    private SkillRequirements skillRequirementsScr;    
+        
+    private float jobPayMultiplier; // How much is your job payment
     public float basicJobPayment; // How much you gain at this job basically       
     public int jobNumber;//Use to identify job
 
@@ -21,7 +22,8 @@ public class JobProgressManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //PlayerData.jobExpMaxValue[jobNumber] = 100;       
+        //PlayerData.jobExpMaxValue[jobNumber] = 100;        
+        jobPayMultiplier = PlayerData.jobPayMultiplier[jobNumber];
         lvlValueText.text = PlayerData.jobLvlValue[jobNumber].ToString();
         progressBar = GetComponent<Slider>();
         progressBar.value = PlayerData.jobExpCurrentValue[jobNumber];        
@@ -58,8 +60,8 @@ public class JobProgressManager : MonoBehaviour
             lvlValueText.text = PlayerData.jobLvlValue[jobNumber].ToString();
             PlayerData.jobExpMaxValue[jobNumber] *= gameManagerScr.expHardener[0]; //Each next level need more exprience
             progressBar.maxValue = PlayerData.jobExpMaxValue[jobNumber];
-            PlayerData.jobPayMultiplier[jobNumber] += 0.03f; //3% increase of payment per level
-            PlayerData.currentJobPayMultiplier = PlayerData.jobPayMultiplier[jobNumber];            
+            jobPayMultiplier += 0.03f; //3% increase of payment per level
+            PlayerData.currentJobPayMultiplier = jobPayMultiplier;            
             jobRequirementsScr.skillLvlChangeTrigger = true; //when current level changed we need to refresh Requirements
             skillRequirementsScr.skillLvlChangeTrigger = true; //when current level changed we need to refresh Requirements
         } else if (PlayerData.jobLvlLoading[jobNumber] == true) //This triggered one time when game load
@@ -73,7 +75,8 @@ public class JobProgressManager : MonoBehaviour
     {
         PlayerData.isJobActive = true;        
         PlayerData.currentBasicJobPayment = basicJobPayment;
-        PlayerData.currentJobPayMultiplier = PlayerData.jobPayMultiplier[jobNumber];
+        PlayerData.currentJobPayMultiplier = jobPayMultiplier;
         PlayerData.currentJobSelectedNumber = jobNumber;
-    }        
+    }    
+    
 }

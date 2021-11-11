@@ -52,8 +52,8 @@ public class SaveLoad : MonoBehaviour
         public int currentJobReqNumber;
             //Income
             public float currentBasicJobPayment; //Use to calculate income
-            public float[] jobPayMultiplier = new float[8]; //Use to save current income multiplier from lvl of job
-            public float currentJobPayMultiplier; //Use to calculate income
+            public static float[] jobPayMultiplier = new float[8]; //Use to save current income multiplier from lvl of job
+        public float currentJobPayMultiplier; //Use to calculate income
             //Other
             public int currentJobSelectedNumber; //USed to show current job on main screen
 
@@ -91,10 +91,6 @@ public class SaveLoad : MonoBehaviour
         data.isJobActive = PlayerData.isJobActive;
         data.currentJobReqNumber = PlayerData.currentJobReqNumber;
             //Income
-            for (int i = 0; i < PlayerData.jobExpMaxValue.Length; i++)
-            {
-                data.jobPayMultiplier[i] = PlayerData.jobPayMultiplier[i];
-            }
             data.currentBasicJobPayment = PlayerData.currentBasicJobPayment;
             data.currentJobPayMultiplier = PlayerData.currentJobPayMultiplier;
             //Other
@@ -139,10 +135,6 @@ public class SaveLoad : MonoBehaviour
         PlayerData.isJobActive = data.isJobActive;
         PlayerData.currentJobReqNumber = data.currentJobReqNumber;
             //Income
-            for (int i = 0; i < PlayerData.jobExpMaxValue.Length; i++)
-            {
-                PlayerData.jobPayMultiplier[i] = data.jobPayMultiplier[i];
-            }
             PlayerData.currentBasicJobPayment = data.currentBasicJobPayment;
             PlayerData.currentJobPayMultiplier = data.currentJobPayMultiplier;
             //Other
