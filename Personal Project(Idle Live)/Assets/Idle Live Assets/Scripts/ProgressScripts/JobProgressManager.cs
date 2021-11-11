@@ -21,7 +21,7 @@ public class JobProgressManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-             
+        //PlayerData.jobExpMaxValue[jobNumber] = 100;       
         lvlValueText.text = PlayerData.jobLvlValue[jobNumber].ToString();
         progressBar = GetComponent<Slider>();
         progressBar.value = PlayerData.jobExpCurrentValue[jobNumber];        

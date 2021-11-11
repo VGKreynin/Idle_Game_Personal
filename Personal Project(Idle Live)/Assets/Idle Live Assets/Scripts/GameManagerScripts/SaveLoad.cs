@@ -58,15 +58,7 @@ public class SaveLoad : MonoBehaviour
             public int currentJobSelectedNumber; //USed to show current job on main screen
 
         //Skill Data
-        public bool isSkillActive;
-        public bool[] skillEnabledStatus = new bool[5]; //Activ or not particular skill
-        public float[] skillExpCurrentValue = new float[5]; //Skill current progress values
-        public float[] skillExpMaxValue = new float[5]; //Skill max values
-        //public static bool[] skillLvlLoading = new bool[5]; //Used to show lvl of skills first time, when loading the game
-        public int[] skillLvlValue = new int[5]; //Skills levels
-        public int currentSkillReqNumber; //According to this number the requiremets shows for next skill
-            //Effects
-            public float[] skillMultipliersArray = new float[5];
+        public float[] skillMultipliersArray = new float[5];
 
         //Reincarnation Data
         public float jobIncMultR; //Stores the multipluer of job income from Reincarnation upgrade
@@ -109,20 +101,10 @@ public class SaveLoad : MonoBehaviour
             data.currentJobSelectedNumber = PlayerData.currentJobSelectedNumber;
 
         //Skill Data
-        for (int i = 0; i < PlayerData.skillExpMaxValue.Length; i++)
-        {
-            data.skillExpCurrentValue[i] = PlayerData.skillExpCurrentValue[i];
-            data.skillExpMaxValue[i] = PlayerData.skillExpMaxValue[i];
-            data.skillLvlValue[i] = PlayerData.skillLvlValue[i];
-            data.skillEnabledStatus[i] = PlayerData.skillEnabledStatus[i];
+        for (int i = 0; i < PlayerData.skillMultipliersArray.Length; i++)
+        {           
+            data.skillMultipliersArray[i] = PlayerData.skillMultipliersArray[i];
         }
-        data.isSkillActive = PlayerData.isSkillActive;
-        data.currentSkillReqNumber = PlayerData.currentSkillReqNumber;
-            //Effects
-            for (int i = 0; i < PlayerData.skillMultipliersArray.Length; i++)
-                {           
-                    data.skillMultipliersArray[i] = PlayerData.skillMultipliersArray[i];
-                }
 
         //Reincarnation Data
         data.jobIncMultR = PlayerData.jobIncMultR;
@@ -167,20 +149,10 @@ public class SaveLoad : MonoBehaviour
             PlayerData.currentJobSelectedNumber = data.currentJobSelectedNumber;
 
         //Skill Data
-        for (int i = 0; i < PlayerData.skillExpMaxValue.Length; i++)
+        for (int i = 0; i < PlayerData.skillMultipliersArray.Length; i++)
         {
-            PlayerData.skillExpCurrentValue[i] = data.skillExpCurrentValue[i];
-            PlayerData.skillExpMaxValue[i] = data.skillExpMaxValue[i];
-            PlayerData.skillLvlValue[i] = data.skillLvlValue[i];
-            PlayerData.skillEnabledStatus[i] = data.skillEnabledStatus[i];
-        }
-        PlayerData.isSkillActive = data.isSkillActive;
-        PlayerData.currentSkillReqNumber = data.currentSkillReqNumber;
-            //Effects
-            for (int i = 0; i < PlayerData.skillMultipliersArray.Length; i++)
-            {
             PlayerData.skillMultipliersArray[i] = data.skillMultipliersArray[i];
-            }
+        }
 
         //Reincarnation Data
         PlayerData.jobIncMultR = data.jobIncMultR;
@@ -226,24 +198,10 @@ public class SaveLoad : MonoBehaviour
             PlayerData.currentJobSelectedNumber = 0;
 
         //Skill data
-        for (int i = 0; i < PlayerData.skillExpMaxValue.Length; i++)
+        for (int i = 0; i < PlayerData.skillMultipliersArray.Length; i++)
         {
-            PlayerData.skillExpMaxValue[i] = 100;
-            //PlayerData.skillLvlLoading[i] = true;
-            PlayerData.skillExpCurrentValue[i] = 0;
-            PlayerData.skillLvlValue[i] = 0;
-            //GameManager.skillsArray[i].SetActive(false); //Deactivating all jobs            
-            PlayerData.skillEnabledStatus[i] = false;
+            PlayerData.skillMultipliersArray[i] = 1;
         }
-        //GameManager.skillsArray[0].SetActive(true); //First job is active from the start
-        PlayerData.skillEnabledStatus[0] = true;
-        PlayerData.currentSkillReqNumber = 1;
-        PlayerData.isSkillActive = false;
-            //Effects
-            for (int i = 0; i < PlayerData.skillMultipliersArray.Length; i++)
-            {
-                PlayerData.skillMultipliersArray[i] = 1;
-            }
 
         //Reincarnation Data
         PlayerData.jobIncMultR = 0;
@@ -286,24 +244,10 @@ public class SaveLoad : MonoBehaviour
         PlayerData.currentJobSelectedNumber = 0;
 
         //Skill data
-        for (int i = 0; i < PlayerData.skillExpMaxValue.Length; i++)
+        for (int i = 0; i < PlayerData.skillMultipliersArray.Length; i++)
         {
-            PlayerData.skillExpMaxValue[i] = 100;
-            //PlayerData.skillLvlLoading[i] = true;
-            PlayerData.skillExpCurrentValue[i] = 0;
-            PlayerData.skillLvlValue[i] = 0;
-            //GameManager.skillsArray[i].SetActive(false); //Deactivating all jobs            
-            PlayerData.skillEnabledStatus[i] = false;
+            PlayerData.skillMultipliersArray[i] = 1;
         }
-        //GameManager.skillsArray[0].SetActive(true); //First job is active from the start
-        PlayerData.skillEnabledStatus[0] = true;
-        PlayerData.currentSkillReqNumber = 1;
-        PlayerData.isSkillActive = false;
-            //Effects
-            for (int i = 0; i < PlayerData.skillMultipliersArray.Length; i++)
-            {
-                PlayerData.skillMultipliersArray[i] = 1;
-            }
 
     }
     public void LoadingGame() //This method used in GameManager at Start, to load data when loading Scene
