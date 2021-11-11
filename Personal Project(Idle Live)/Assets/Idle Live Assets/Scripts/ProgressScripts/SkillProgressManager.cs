@@ -30,8 +30,7 @@ public class SkillProgressManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        progressBar = GetComponent<Slider>();
-        expMaxValue = 100;
+        progressBar = GetComponent<Slider>();        
 
         lvlValueText.text = "0";
         progressBar.value = 0;
