@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
 
     private void NetCalculation() //Net calculation method
     {
-        incomeValue = PlayerData.currentBasicJobPayment * PlayerData.currentJobPayMultiplier * PlayerData.skillMultipliersArray[2] * (1 + PlayerData.jobIncMultR);
+        incomeValue = PlayerData.currentBasicJobPayment * PlayerData.jobPayMultiplier[PlayerData.currentJobSelectedNumber] * PlayerData.skillMultipliersArray[2] * (1 + PlayerData.jobIncMultR);
         netValue = incomeValue - TotalExpenses();
     }
 
