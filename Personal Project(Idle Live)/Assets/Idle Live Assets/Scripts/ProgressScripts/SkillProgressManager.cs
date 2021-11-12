@@ -12,8 +12,7 @@ public class SkillProgressManager : MonoBehaviour
     private SkillRequirements skillRequirementsScr;
 
     private Slider progressBar;
-    
-    private float skillProgressValue; //% of current lvl progress
+        
     [HideInInspector] public int currentLvl;
     private float expMaxValue; //How much experience needed to reach next level 
     public int skillNumber; //indentification number of skill
@@ -45,7 +44,7 @@ public class SkillProgressManager : MonoBehaviour
     void Update()
     {
         MoneyEnding();
-        if (gameManagerScr.isSkillActive == true && gameManagerScr.currentSkill == gameObject.name)
+        if (PlayerData.isSkillActive == true && PlayerData.currentSkillSelectedNumber == skillNumber)
         {
             SkillProgress(Time.deltaTime * 50 * PlayerData.skillMultipliersArray[0] * (1 + PlayerPrefs.GetFloat("SkillExpMult")));
         }
@@ -53,21 +52,21 @@ public class SkillProgressManager : MonoBehaviour
 
     private void SkillProgress(float addProgress)
     {
-        skillProgressValue += addProgress;
+        
         progressBar.value += addProgress;
-        if (skillProgressValue >= expMaxValue)
-        {
-            skillProgressValue = 0;
+        PlayerData.skillExpCurrentValue[skillNumber] = progressBar.value; //This used to save/load data
+        if (progressBar.value >= PlayerData.skillExpMaxValue[skillNumber])
+        {            
             progressBar.value = 0;
-            currentLvl += 1;
-            gameManagerScr.skillExpensesValue -= skillCurrentCost; //We need to erase old value of skill, to assign new value
-            skillCurrentCost *= gameManagerScr.costIncreaser[0];
-            gameManagerScr.skillExpensesValue += skillCurrentCost;
-            lvlValueText.text = currentLvl.ToString();
-            expMaxValue *= gameManagerScr.expHardener[1]; //Each next level need more exprience
-            progressBar.maxValue = expMaxValue;
+            PlayerData.skillExpCurrentValue[skillNumber] = 0; //This used to save/load data
+            PlayerData.skillLvlValue[skillNumber] += 1;            
+            gameManagerScr.skillExpensesValue -= PlayerData.skillCost[skillNumber]; //We need to erase old value of skill, to assign new value
+            PlayerData.skillCost[skillNumber] *= gameManagerScr.costIncreaser[0];
+            gameManagerScr.skillExpensesValue += PlayerData.skillCost[skillNumber];
+            lvlValueText.text = PlayerData.skillLvlValue[skillNumber].ToString();
+            PlayerData.skillExpMaxValue[skillNumber] *= gameManagerScr.expHardener[1]; //Each next level need more exprience
+            progressBar.maxValue = PlayerData.skillExpMaxValue[skillNumber];
             PlayerData.skillMultipliersArray[skillNumber] += skillMultiplier; //Each next level global multiplier for skillMultipler            
-            gameManagerScr.skillsCurrentLvlArray[skillNumber] = currentLvl; //updating array storing current lvls of skills
             jobRequirementsScr.skillLvlChangeTrigger = true; //when current level changed we need to refresh Requirements
             skillRequirementsScr.skillLvlChangeTrigger = true; //when current level changed we need to refresh Requirements
         }
@@ -77,7 +76,7 @@ public class SkillProgressManager : MonoBehaviour
     {
         int x = 0;
 
-        if (gameManagerScr.isSkillActive == false && gameManagerScr.moneyValue > skillCurrentCost) //Starting skill progress
+        if (PlayerData.isSkillActive == false && gameManagerScr.moneyValue > PlayerData.skillCost[skillNumber]) //Starting skill progress
         {
             gameManagerScr.isSkillActive = true;
             gameManagerScr.currentSkill = gameObject.name;

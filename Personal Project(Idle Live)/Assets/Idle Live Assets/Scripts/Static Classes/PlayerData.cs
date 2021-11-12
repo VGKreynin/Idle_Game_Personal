@@ -35,9 +35,15 @@ public static class PlayerData //Put here every variable that should be in SaveG
     //public static bool[] skillLvlLoading = new bool[5]; //Used to show lvl of skills first time, when loading the game
     public static int[] skillLvlValue = new int[5]; //Skills levels
     public static int currentSkillReqNumber; //According to this number the requiremets shows for next skill
+        //Cost
+        public static float[] skillCost = new float[5];
         //Effects
         public static float[] skillMultipliersArray = new float[5]; //Stores different multiplierls
         //Endurance[0] - Skill Experience //Discipline[1] - Job Experience //Motivation[2] - Job payment //Negotiations[3] - Ecology income //Management[4] - Ecology cost decrease
+
+        //Other
+        public static int currentSkillSelectedNumber; //USed to save currently selected job
+
 
     //Reincarnation upgrade Data
     public static float jobIncMultR; //Stores the multipluer of job income from Reincarnation upgrade
