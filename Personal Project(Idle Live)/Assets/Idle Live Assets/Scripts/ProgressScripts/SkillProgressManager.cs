@@ -13,15 +13,12 @@ public class SkillProgressManager : MonoBehaviour
 
     private Slider progressBar;
         
-    [HideInInspector] public int currentLvl;
-    private float expMaxValue; //How much experience needed to reach next level 
+    [HideInInspector] public int currentLvl;   
     public int skillNumber; //indentification number of skill
     public float skillMultiplier; //Personal skill multiplier value
     //Endurance - Skill Experience //Discipline - Job Experience //Motivation - Job payment //Negotiations - Ecology income //Management - Ecology cost decrease
 
     public float skillBasicCost; //Starting cost of skill
-    private float skillCurrentCost; //Current cost of skill
-
 
     public int[] skillSkillReq; //Array contains required values of skill for every Skill. 0 is Discipline, 3 is Management
 
@@ -37,7 +34,7 @@ public class SkillProgressManager : MonoBehaviour
         jobRequirementsScr = GameObject.Find("Job Requirements Value").GetComponent<JobRequirements>();
         skillRequirementsScr = GameObject.Find("Skill Requirements Value").GetComponent<SkillRequirements>();
 
-        skillCurrentCost = skillBasicCost;
+        PlayerData.skillCost[skillNumber] = skillBasicCost;
     }
 
     // Update is called once per frame
@@ -78,23 +75,23 @@ public class SkillProgressManager : MonoBehaviour
 
         if (PlayerData.isSkillActive == false && gameManagerScr.moneyValue > PlayerData.skillCost[skillNumber]) //Starting skill progress
         {
-            gameManagerScr.isSkillActive = true;
-            gameManagerScr.currentSkill = gameObject.name;
+            PlayerData.isSkillActive = true;
+            PlayerData.currentSkillSelectedNumber = skillNumber;
             x = 1;
-            gameManagerScr.skillExpensesValue += skillCurrentCost;
+            gameManagerScr.skillExpensesValue += PlayerData.skillCost[skillNumber];
         }
 
-        if (gameManagerScr.isSkillActive == true && x == 0 && gameManagerScr.currentSkill == gameObject.name) //Stopping skill progress
+        if (PlayerData.isSkillActive == true && x == 0 && PlayerData.currentSkillSelectedNumber == skillNumber) //Stopping skill progress
         {
-            gameManagerScr.isSkillActive = false;
+            PlayerData.isSkillActive = false;
             gameManagerScr.skillExpensesValue = 0;
         }
 
-        if (gameManagerScr.isSkillActive == true && x == 0 && gameManagerScr.currentSkill != gameObject.name) //If push other skill button, we stop previous skill, and start this skill
+        if (PlayerData.isSkillActive == true && x == 0 && PlayerData.currentSkillSelectedNumber != skillNumber) //If push other skill button, we stop previous skill, and start this skill
         {
-            gameManagerScr.currentSkill = gameObject.name;
+            PlayerData.currentSkillSelectedNumber = skillNumber;
             gameManagerScr.skillExpensesValue = 0;
-            gameManagerScr.skillExpensesValue += skillCurrentCost;
+            gameManagerScr.skillExpensesValue += PlayerData.skillCost[skillNumber];
         }
 
     }
@@ -104,7 +101,7 @@ public class SkillProgressManager : MonoBehaviour
 
         if (gameManagerScr.moneyValue < 0)
         {
-            gameManagerScr.isSkillActive = false;
+            PlayerData.isSkillActive = false;
             gameManagerScr.skillExpensesValue = 0;
         }
     }

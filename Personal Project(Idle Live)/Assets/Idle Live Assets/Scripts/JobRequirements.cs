@@ -61,10 +61,10 @@ public class JobRequirements : MonoBehaviour
                     
                     for (int i = 0; i < startParameters.skillsNamesArray.Length; i++)
                     {
-                        if (gameManager.skillsCurrentLvlArray[i] < startParameters.jobRequiremetsMultiArray[PlayerData.currentJobReqNumber, i])
+                        if (PlayerData.skillLvlValue[i] < startParameters.jobRequiremetsMultiArray[PlayerData.currentJobReqNumber, i])
                         {
 
-                            gameObjectText.text += startParameters.skillsNamesArray[i] + " " + gameManager.skillsCurrentLvlArray[i] + "/" + startParameters.jobRequiremetsMultiArray[PlayerData.currentJobReqNumber, i] + " ";
+                            gameObjectText.text += startParameters.skillsNamesArray[i] + " " + PlayerData.skillLvlValue[i] + "/" + startParameters.jobRequiremetsMultiArray[PlayerData.currentJobReqNumber, i] + " ";
                         }
                     }
                 }
@@ -74,15 +74,7 @@ public class JobRequirements : MonoBehaviour
             currentJobLvlText.text = PlayerData.jobLvlValue[PlayerData.currentJobSelectedNumber].ToString();
             skillLvlChangeTrigger = false;
         }
-    }
-    
-    private void JobsDeactivation() //Deactivating all jobs accept janitor
-    {
-        for (int i = 1; i < GameManager.jobsArray.Length; i++)
-        {
-            GameManager.jobsArray[i].SetActive(false);            
-        }
-    }
+    }    
 
     private bool IsJobRequirementsMet()
     {
@@ -95,7 +87,7 @@ public class JobRequirements : MonoBehaviour
         }
         for (int i = 0; i < startParameters.skillsNamesArray.Length; i++)
         {
-            if ((gameManager.skillsCurrentLvlArray[i] - startParameters.jobRequiremetsMultiArray[PlayerData.currentJobReqNumber, i]) < 0)
+            if ((PlayerData.skillLvlValue[i] - startParameters.jobRequiremetsMultiArray[PlayerData.currentJobReqNumber, i]) < 0)
             {
                 x = 0;
             }

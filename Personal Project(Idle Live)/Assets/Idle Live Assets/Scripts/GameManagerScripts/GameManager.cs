@@ -29,13 +29,7 @@ public class GameManager : MonoBehaviour
 
     private float netValue; 
 
-    [HideInInspector] public Slider progressBar;
-    
-    [HideInInspector] public bool isSkillActive; //Trigger to start skill progress
-    [HideInInspector] public string currentSkill; //Currently selected job and skill
-    [HideInInspector] public string currentJobName, currentSkillName; //Currently selected job and skill
-
-    [HideInInspector] public int[] skillsCurrentLvlArray; //Storing current lvls of all jobs and skills
+    [HideInInspector] public Slider progressBar;      
         
     public float ecologyToWin; //Emount of Ecology point needed to win the game(WINCONDITION)
 
@@ -54,8 +48,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        LoadMultipliersArray(); //Setting first value of all multipliers to 1        
-        skillsCurrentLvlArray = new int[startParameters.skillsNamesArray.Length];
+        LoadMultipliersArray(); //Setting first value of all multipliers to 1         
 
         SkillsLvlZero(); //assign all skills lvl 0 at the start in skillCurrentLvl Array
         IncExpNetVisualise();
@@ -109,11 +102,11 @@ public class GameManager : MonoBehaviour
         return totalExpenses;
     }
 
-    private void SkillsLvlZero() //assign all skills lvl 0 at the start in skillCurrentLvl Array
+    private void SkillsLvlZero() //assign all skills lvl 0 at the start
     {
         for (int i = 0; i < startParameters.skillsNamesArray.Length; i++)
         {
-            skillsCurrentLvlArray[i] = 0;
+            PlayerData.skillLvlValue[i] = 0;
         }
     }
 

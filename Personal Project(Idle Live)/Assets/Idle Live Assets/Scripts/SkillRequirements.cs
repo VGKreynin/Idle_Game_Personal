@@ -59,9 +59,9 @@ public class SkillRequirements : MonoBehaviour
                 {                    
                     for (int i = 0; i < startParameters.skillsNamesArray.Length; i++)
                     {
-                        if (gameManager.skillsCurrentLvlArray[i] < startParameters.skillRequiremetsMultiArray[currentSkillNumber, i])
+                        if (PlayerData.skillLvlValue[i] < startParameters.skillRequiremetsMultiArray[currentSkillNumber, i])
                         {
-                            gameObjectText.text += startParameters.skillsNamesArray[i] + " " + gameManager.skillsCurrentLvlArray[i] + "/" + startParameters.skillRequiremetsMultiArray[currentSkillNumber, i] + " ";
+                            gameObjectText.text += startParameters.skillsNamesArray[i] + " " + PlayerData.skillLvlValue[i] + "/" + startParameters.skillRequiremetsMultiArray[currentSkillNumber, i] + " ";
                         }
                     }
                 }
@@ -86,7 +86,7 @@ public class SkillRequirements : MonoBehaviour
         
         for (int i = 0; i < startParameters.skillsNamesArray.Length; i++)
         {
-            if ((gameManager.skillsCurrentLvlArray[i] - startParameters.skillRequiremetsMultiArray[currentSkillNumber, i]) < 0)
+            if ((PlayerData.skillLvlValue[i] - startParameters.skillRequiremetsMultiArray[currentSkillNumber, i]) < 0)
             {
                 x = 0;
             }
