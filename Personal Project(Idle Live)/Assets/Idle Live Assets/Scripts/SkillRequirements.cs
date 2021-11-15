@@ -7,15 +7,9 @@ public class SkillRequirements : MonoBehaviour
 {
     [HideInInspector] public StartParameters startParameters;
     [HideInInspector] public GameManager gameManager;
-    private TextMeshProUGUI gameObjectText;
-    public GameObject[] skillsArray;
+    private TextMeshProUGUI gameObjectText;   
 
-    public string[] skillNameArray; //Storing names of all skills
-    public int[] skillCurrentLvlArray; //Storing current lvls of all skills
-
-    [HideInInspector] public bool skillLvlChangeTrigger;
-
-    private int currentSkillNumber; //Variable where we store number current job of which requirements should be shown. Cashier 0, president 6.
+    [HideInInspector] public bool skillLvlChangeTrigger;    
 
 
     // Start is called before the first frame update
@@ -25,8 +19,6 @@ public class SkillRequirements : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         skillLvlChangeTrigger = true;
-
-        currentSkillNumber = 1;
 
         gameObjectText = gameObject.GetComponent<TextMeshProUGUI>();
         gameObjectText.text = "";
@@ -47,21 +39,22 @@ public class SkillRequirements : MonoBehaviour
         {
             gameObjectText.text = "";            
 
-            if (currentSkillNumber < skillsArray.Length) //check if all skills are opened
+            if (PlayerData.currentSkillReqNumber < GameManager.skillsArray.Length) //check if all skills are opened
             {
                 if (IsSkillRequirementsMet() == true) //logical part of requirements
                 {
-                    skillsArray[currentSkillNumber].SetActive(true); //activating new job
-                    currentSkillNumber += 1;
+                    GameManager.skillsArray[PlayerData.currentSkillReqNumber].SetActive(true); //activating new job
+                    PlayerData.skillEnabledStatus[PlayerData.currentSkillReqNumber] = true;
+                    PlayerData.currentSkillReqNumber += 1;
                 }
 
-                if (currentSkillNumber < skillsArray.Length) //visual part of requirements
+                if (PlayerData.currentSkillReqNumber < GameManager.skillsArray.Length) //visual part of requirements
                 {                    
-                    for (int i = 0; i < startParameters.skillsNamesArray.Length; i++)
+                    for (int i = 0; i < GameManager.skillsArray.Length; i++)
                     {
-                        if (PlayerData.skillLvlValue[i] < startParameters.skillRequiremetsMultiArray[currentSkillNumber, i])
+                        if (PlayerData.skillLvlValue[i] < startParameters.skillRequiremetsMultiArray[PlayerData.currentSkillReqNumber, i])
                         {
-                            gameObjectText.text += startParameters.skillsNamesArray[i] + " " + PlayerData.skillLvlValue[i] + "/" + startParameters.skillRequiremetsMultiArray[currentSkillNumber, i] + " ";
+                            gameObjectText.text += startParameters.skillsNamesArray[i] + " " + PlayerData.skillLvlValue[i] + "/" + startParameters.skillRequiremetsMultiArray[PlayerData.currentSkillReqNumber, i] + " ";
                         }
                     }
                 }
@@ -72,9 +65,9 @@ public class SkillRequirements : MonoBehaviour
 
     private void SkillsDeactivation() //Deactivating all skills accept Endurance
     {
-       for (int i = 1; i < skillsArray.Length; i++)
+       for (int i = 1; i < GameManager.skillsArray.Length; i++)
         {
-            skillsArray[i].SetActive(false);
+            GameManager.skillsArray[i].SetActive(false);
             
         }                   
     }
@@ -86,7 +79,7 @@ public class SkillRequirements : MonoBehaviour
         
         for (int i = 0; i < startParameters.skillsNamesArray.Length; i++)
         {
-            if ((PlayerData.skillLvlValue[i] - startParameters.skillRequiremetsMultiArray[currentSkillNumber, i]) < 0)
+            if ((PlayerData.skillLvlValue[i] - startParameters.skillRequiremetsMultiArray[PlayerData.currentSkillReqNumber, i]) < 0)
             {
                 x = 0;
             }

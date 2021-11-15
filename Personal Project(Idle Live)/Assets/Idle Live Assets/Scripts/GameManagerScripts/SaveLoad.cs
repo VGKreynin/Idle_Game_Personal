@@ -169,10 +169,12 @@ public class SaveLoad : MonoBehaviour
         //Skill Data
         for (int i = 0; i < PlayerData.skillExpMaxValue.Length; i++)
         {
+            PlayerData.skillEnabledStatus[i] = data.skillEnabledStatus[i];
+            GameManager.skillsArray[i].SetActive(PlayerData.skillEnabledStatus[i]);
             PlayerData.skillExpCurrentValue[i] = data.skillExpCurrentValue[i];
             PlayerData.skillExpMaxValue[i] = data.skillExpMaxValue[i];
-            PlayerData.skillLvlValue[i] = data.skillLvlValue[i];
-            PlayerData.skillEnabledStatus[i] = data.skillEnabledStatus[i];
+            //PlayerData.skillLvlLoading[i] = true; not sure that needed
+            PlayerData.skillLvlValue[i] = data.skillLvlValue[i];            
         }
         PlayerData.isSkillActive = data.isSkillActive;
         PlayerData.currentSkillReqNumber = data.currentSkillReqNumber;
@@ -229,13 +231,13 @@ public class SaveLoad : MonoBehaviour
         for (int i = 0; i < PlayerData.skillExpMaxValue.Length; i++)
         {
             PlayerData.skillExpMaxValue[i] = 100;
-            //PlayerData.skillLvlLoading[i] = true;
+            //PlayerData.skillLvlLoading[i] = true; not sure that needed
             PlayerData.skillExpCurrentValue[i] = 0;
             PlayerData.skillLvlValue[i] = 0;
-            //GameManager.skillsArray[i].SetActive(false); //Deactivating all jobs            
+            GameManager.skillsArray[i].SetActive(false); //Deactivating all skills            
             PlayerData.skillEnabledStatus[i] = false;
         }
-        //GameManager.skillsArray[0].SetActive(true); //First job is active from the start
+        GameManager.skillsArray[0].SetActive(true); //First skill is active from the start
         PlayerData.skillEnabledStatus[0] = true;
         PlayerData.currentSkillReqNumber = 1;
         PlayerData.isSkillActive = false;
@@ -269,8 +271,7 @@ public class SaveLoad : MonoBehaviour
         {
             PlayerData.jobExpMaxValue[i] = 100;
             PlayerData.jobLvlLoading[i] = true;
-            PlayerData.jobExpCurrentValue[i] = 0;
-            Debug.Log(PlayerData.jobExpCurrentValue[i]);
+            PlayerData.jobExpCurrentValue[i] = 0;            
             PlayerData.jobLvlValue[i] = 0;
             GameManager.jobsArray[i].SetActive(false); //Deactivating all jobs            
             PlayerData.jobEnabledStatus[i] = false;
@@ -292,10 +293,10 @@ public class SaveLoad : MonoBehaviour
             //PlayerData.skillLvlLoading[i] = true;
             PlayerData.skillExpCurrentValue[i] = 0;
             PlayerData.skillLvlValue[i] = 0;
-            //GameManager.skillsArray[i].SetActive(false); //Deactivating all jobs            
+            GameManager.skillsArray[i].SetActive(false); //Deactivating all skills            
             PlayerData.skillEnabledStatus[i] = false;
         }
-        //GameManager.skillsArray[0].SetActive(true); //First job is active from the start
+        GameManager.skillsArray[0].SetActive(true); //First skill is active from the start
         PlayerData.skillEnabledStatus[0] = true;
         PlayerData.currentSkillReqNumber = 1;
         PlayerData.isSkillActive = false;
@@ -324,6 +325,5 @@ public class SaveLoad : MonoBehaviour
             PlayerData.newOrContinueGame = 10;
             Time.timeScale = 1;
         }
-    }  
-
+    } 
 }

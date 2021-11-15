@@ -59,7 +59,7 @@ public class JobRequirements : MonoBehaviour
                         gameObjectText.text += startParameters.jobsNamesArray[PlayerData.currentJobReqNumber - 1] + " " + PlayerData.jobLvlValue[PlayerData.currentJobReqNumber - 1] + "/10 ";
                     }
                     
-                    for (int i = 0; i < startParameters.skillsNamesArray.Length; i++)
+                    for (int i = 0; i < GameManager.skillsArray.Length; i++)
                     {
                         if (PlayerData.skillLvlValue[i] < startParameters.jobRequiremetsMultiArray[PlayerData.currentJobReqNumber, i])
                         {

@@ -35,10 +35,12 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject[] jobsArrayX; //This Array stores all jobs and translate them to JobArray static
     public static GameObject[] jobsArray = new GameObject[8]; //This Array stores all jobs Gameobjects to use
+    [SerializeField] private GameObject[] skillsArrayX; //This Array stores all skills and translate them to SkillsArray static
+    public static GameObject[] skillsArray = new GameObject[5]; //This Array stores all skills Gameobjects to use
 
     private void Awake()
     {
-        JobsActivationLoading(); //Loading activation Data of jobs
+        JobsandSkillsActivationLoading(); //Loading activation Data of jobs
         
         startParameters = gameObject.GetComponent<StartParameters>();
         saveLoadScr = gameObject.GetComponent<SaveLoad>();
@@ -145,13 +147,18 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Start Menu");
     }         
 
-    public void JobsActivationLoading()
+    public void JobsandSkillsActivationLoading()
     {
         Debug.Log("JobArrayLoading");
         for (int i = 0; i < jobsArrayX.Length; i++) //Copying jobs gameobjects to static massive
         {
             jobsArray[i] = jobsArrayX[i];
             jobsArray[i].SetActive(PlayerData.jobEnabledStatus[i]);
+        }
+        for (int i = 0; i < skillsArrayX.Length; i++) //Copying skills gameobjects to static massive
+        {
+            skillsArray[i] = skillsArrayX[i];
+            skillsArray[i].SetActive(PlayerData.skillEnabledStatus[i]);
         }
     }
     public void NewOrContinueValue(int newOrContinue)

@@ -40,7 +40,6 @@ public static class PlayerData //Put here every variable that should be in SaveG
         //Effects
         public static float[] skillMultipliersArray = new float[5]; //Stores different multiplierls
         //Endurance[0] - Skill Experience //Discipline[1] - Job Experience //Motivation[2] - Job payment //Negotiations[3] - Ecology income //Management[4] - Ecology cost decrease
-
         //Other
         public static int currentSkillSelectedNumber; //USed to save currently selected job
 
