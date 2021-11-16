@@ -40,10 +40,16 @@ public class SkillProgressManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoneyEnding();
+        
         if (PlayerData.isSkillActive == true && PlayerData.currentSkillSelectedNumber == skillNumber)
         {
             SkillProgress(Time.deltaTime * 50 * PlayerData.skillMultipliersArray[0] * (1 + PlayerPrefs.GetFloat("SkillExpMult")));
+        }
+        else if (PlayerData.skillLvlLoading[skillNumber] == true) //This triggered one time when game load
+        {
+            lvlValueText.text = PlayerData.skillLvlValue[skillNumber].ToString();
+            progressBar.maxValue = PlayerData.skillExpMaxValue[skillNumber];
+            PlayerData.skillLvlLoading[skillNumber] = false;
         }
     }
 
@@ -66,6 +72,11 @@ public class SkillProgressManager : MonoBehaviour
             PlayerData.skillMultipliersArray[skillNumber] += skillMultiplier; //Each next level global multiplier for skillMultipler            
             jobRequirementsScr.skillLvlChangeTrigger = true; //when current level changed we need to refresh Requirements
             skillRequirementsScr.skillLvlChangeTrigger = true; //when current level changed we need to refresh Requirements
+        } else if (PlayerData.skillLvlLoading[skillNumber] == true) //This triggered one time when game load
+        {
+            lvlValueText.text = PlayerData.skillLvlValue[skillNumber].ToString();
+            progressBar.maxValue = PlayerData.skillExpMaxValue[skillNumber];
+            PlayerData.skillLvlLoading[skillNumber] = false;
         }
     }
 
@@ -96,14 +107,6 @@ public class SkillProgressManager : MonoBehaviour
 
     }
 
-    private void MoneyEnding() //When money become 0, all expenses should be stopped method
-    {
-
-        if (gameManagerScr.moneyValue < 0)
-        {
-            PlayerData.isSkillActive = false;
-            gameManagerScr.skillExpensesValue = 0;
-        }
-    }
+    
 }
     

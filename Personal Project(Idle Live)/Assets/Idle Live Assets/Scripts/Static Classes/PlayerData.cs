@@ -17,7 +17,7 @@ public static class PlayerData //Put here every variable that should be in SaveG
     public static bool[] jobEnabledStatus = new bool[8]; //Activ or not particular job
     public static float[] jobExpCurrentValue = new float[8]; //Job current progress values
     public static float[] jobExpMaxValue = new float[8]; //Job max values
-    public static bool[] jobLvlLoading = new bool[8]; //Used to show lvl of jobs first time, when loading the game
+    public static bool[] jobLvlLoading = new bool[8]; //Used to show lvl of jobs and set expMaxValue first time, when loading the game
     public static int[] jobLvlValue = new int[8];
     public static int currentJobReqNumber; //According to this number the requiremets shows for next job
         //Income
@@ -32,7 +32,7 @@ public static class PlayerData //Put here every variable that should be in SaveG
     public static bool[] skillEnabledStatus = new bool[5]; //Activ or not particular skill
     public static float[] skillExpCurrentValue = new float[5]; //Skill current progress values
     public static float[] skillExpMaxValue = new float[5]; //Skill max values
-    //public static bool[] skillLvlLoading = new bool[5]; //Used to show lvl of skills first time, when loading the game
+    public static bool[] skillLvlLoading = new bool[5]; //Used to show lvl of skills and expMaxValue first time, when loading the game
     public static int[] skillLvlValue = new int[5]; //Skills levels
     public static int currentSkillReqNumber; //According to this number the requiremets shows for next skill
         //Cost

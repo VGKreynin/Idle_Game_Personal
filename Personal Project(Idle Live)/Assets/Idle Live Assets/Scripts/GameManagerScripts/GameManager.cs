@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        MoneyEndingStopExpences();
         NetCalculation();
         UpdateMoney(Time.deltaTime * netValue);
         IncExpNetVisualise();
@@ -165,5 +166,15 @@ public class GameManager : MonoBehaviour
     {
         PlayerData.newOrContinueGame = newOrContinue;
         SceneManager.LoadScene("Main Scene");
+    }
+
+    private void MoneyEndingStopExpences() //When money become 0, all expenses should be stopped method
+    {
+
+        if (moneyValue < 0)
+        {
+            PlayerData.isSkillActive = false;
+            skillExpensesValue = 0;
+        }
     }
 }

@@ -114,7 +114,7 @@ public class SaveLoad : MonoBehaviour
             data.skillExpCurrentValue[i] = PlayerData.skillExpCurrentValue[i];
             data.skillExpMaxValue[i] = PlayerData.skillExpMaxValue[i];
             data.skillLvlValue[i] = PlayerData.skillLvlValue[i];
-            data.skillEnabledStatus[i] = PlayerData.skillEnabledStatus[i];
+            data.skillEnabledStatus[i] = PlayerData.skillEnabledStatus[i];            
         }
         data.isSkillActive = PlayerData.isSkillActive;
         data.currentSkillReqNumber = PlayerData.currentSkillReqNumber;
@@ -170,10 +170,11 @@ public class SaveLoad : MonoBehaviour
         for (int i = 0; i < PlayerData.skillExpMaxValue.Length; i++)
         {
             PlayerData.skillEnabledStatus[i] = data.skillEnabledStatus[i];
+            Debug.Log(PlayerData.skillEnabledStatus[i]);
             GameManager.skillsArray[i].SetActive(PlayerData.skillEnabledStatus[i]);
             PlayerData.skillExpCurrentValue[i] = data.skillExpCurrentValue[i];
             PlayerData.skillExpMaxValue[i] = data.skillExpMaxValue[i];
-            //PlayerData.skillLvlLoading[i] = true; not sure that needed
+            PlayerData.skillLvlLoading[i] = true;
             PlayerData.skillLvlValue[i] = data.skillLvlValue[i];            
         }
         PlayerData.isSkillActive = data.isSkillActive;
@@ -231,7 +232,7 @@ public class SaveLoad : MonoBehaviour
         for (int i = 0; i < PlayerData.skillExpMaxValue.Length; i++)
         {
             PlayerData.skillExpMaxValue[i] = 100;
-            //PlayerData.skillLvlLoading[i] = true; not sure that needed
+            PlayerData.skillLvlLoading[i] = true;
             PlayerData.skillExpCurrentValue[i] = 0;
             PlayerData.skillLvlValue[i] = 0;
             GameManager.skillsArray[i].SetActive(false); //Deactivating all skills            
@@ -290,7 +291,7 @@ public class SaveLoad : MonoBehaviour
         for (int i = 0; i < PlayerData.skillExpMaxValue.Length; i++)
         {
             PlayerData.skillExpMaxValue[i] = 100;
-            //PlayerData.skillLvlLoading[i] = true;
+            PlayerData.skillLvlLoading[i] = true;
             PlayerData.skillExpCurrentValue[i] = 0;
             PlayerData.skillLvlValue[i] = 0;
             GameManager.skillsArray[i].SetActive(false); //Deactivating all skills            

@@ -633,14 +633,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startParameters: {fileID: 0}
   gameManager: {fileID: 0}
-  skillsArray:
-  - {fileID: 1507758803}
-  - {fileID: 395604172}
-  - {fileID: 950505409}
-  - {fileID: 1065039394}
-  - {fileID: 561430199}
-  skillNameArray: []
-  skillCurrentLvlArray: 
   skillLvlChangeTrigger: 0
 --- !u!114 &34481800
 MonoBehaviour:
@@ -15574,7 +15566,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1121201.1, y: 731170.94}
+  m_AnchoredPosition: {x: -1166560.6, y: 761690.3}
   m_SizeDelta: {x: 0, y: 1038.9905}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &748839976
@@ -40061,11 +40053,6 @@ MonoBehaviour:
   - 0
   - 0
   progressBar: {fileID: 0}
-  isSkillActive: 0
-  currentSkill: 
-  currentJobName: 
-  currentSkillName: 
-  skillsCurrentLvlArray: 
   ecologyToWin: 100000000
   jobsArrayX:
   - {fileID: 1758282959}
@@ -40076,6 +40063,12 @@ MonoBehaviour:
   - {fileID: 1644914847}
   - {fileID: 980830885}
   - {fileID: 623879933}
+  skillsArrayX:
+  - {fileID: 1507758803}
+  - {fileID: 395604172}
+  - {fileID: 950505409}
+  - {fileID: 1065039394}
+  - {fileID: 561430199}
 --- !u!4 &1782965451
 Transform:
   m_ObjectHideFlags: 0
