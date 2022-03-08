@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class StartMenuScript : MonoBehaviour
 {
-     public void NewGame()
+    public void NewGame()
     {
         PlayerData.newOrContinueGame = 0;
         SceneManager.LoadScene("Main Scene");
