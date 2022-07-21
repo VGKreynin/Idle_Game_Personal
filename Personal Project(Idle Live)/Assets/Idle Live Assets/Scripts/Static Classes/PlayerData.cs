@@ -7,6 +7,7 @@ using System;
 public static class PlayerData //Put here every variable that should be in SaveGame
 {
     public static int newOrContinueGame = 0; //Use to understand which mode is chosen. New Game or Continue Game
+    public static int openedMenu = 0;// What screen is currently opened
     
     //Timer Data
     public static float days;

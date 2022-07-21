@@ -6,10 +6,9 @@ using TMPro;
 
 public class MenuChooser : MonoBehaviour
 {
-    public GameObject[] menuArray;
-    private Canvas[] menuCanvasCompArray; //Array of components Canvas from object of menuArray
-    private GraphicRaycaster[] menuGraphicrayCompArray; //Array of components GraphicRaycaster from object of menuArray
-    public TextMeshProUGUI ecoPointsText;
+    public CanvasGroup[] menuArray;
+    
+    //public TextMeshProUGUI ecoPointsText;
 
     private GameManager gameManagerScr;    
 
@@ -17,23 +16,16 @@ public class MenuChooser : MonoBehaviour
     void Start()
     {
         
-        menuCanvasCompArray = new Canvas[menuArray.Length];
-        menuGraphicrayCompArray = new GraphicRaycaster[menuArray.Length];
+        gameManagerScr = gameObject.GetComponent<GameManager>();            
 
-        gameManagerScr = gameObject.GetComponent<GameManager>();        
-
-        for (int i = 0; i< menuArray.Length; i++) //Getting components of Menu Canvases
-        {
-            menuCanvasCompArray[i] = menuArray[i].GetComponent<Canvas>();
-            menuGraphicrayCompArray[i] = menuArray[i].GetComponent<GraphicRaycaster>();
-
-        }
-           
+        MenuActivation(PlayerData.openedMenu);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
         //cheking win condition and going to winning screen
         if (gameManagerScr.ecologyValue > gameManagerScr.ecologyToWin)
         {
@@ -41,20 +33,23 @@ public class MenuChooser : MonoBehaviour
             menuCanvasCompArray[0].enabled = false;
             menuGraphicrayCompArray[0].enabled = false;            
             enabled = false; // stop updating method
-        }
+        }*/
     }
     
     public void MenuActivation(int chosenMenu)
     {
         for (int i = 1; i < menuArray.Length; i++)
         {
-            menuCanvasCompArray[i].enabled = false;
-            menuGraphicrayCompArray[i].enabled = false;
+            menuArray[i].alpha = 0;
+            menuArray[i].interactable = false;
+            menuArray[i].blocksRaycasts = false;            
         }
-        menuCanvasCompArray[chosenMenu].enabled = true;
-        menuGraphicrayCompArray[chosenMenu].enabled = true;
+        menuArray[chosenMenu].alpha = 1;
+        menuArray[chosenMenu].interactable = true;
+        menuArray[chosenMenu].blocksRaycasts = true;
     }
 
+    /*
     public void ReincarnationCanvas()
     {
         for (int i = 0; i < menuArray.Length; i++)
@@ -69,5 +64,5 @@ public class MenuChooser : MonoBehaviour
         x += Mathf.RoundToInt(gameManagerScr.ecologyValue) / 10;        
         PlayerPrefs.SetInt("Ecology Points", x);
         ecoPointsText.text = x.ToString();
-    }
+    }*/
 }

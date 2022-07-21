@@ -29,7 +29,7 @@ public class TimeCount : MonoBehaviour
             PlayerData.days = 365;
         }
         ReincarnationButtonAppear();
-        Reincarnation();
+        //Reincarnation();
     }
 
     private void ReincarnationButtonAppear() //Button Reincarnation should appear at 5th year till the end
@@ -40,6 +40,7 @@ public class TimeCount : MonoBehaviour
         }
     }
 
+    /*
     private void Reincarnation() //Go to Reincarnation when year is below 0
     {
         if (PlayerData.years < 0)
@@ -48,4 +49,5 @@ public class TimeCount : MonoBehaviour
            
         }
     }
+    */
 }

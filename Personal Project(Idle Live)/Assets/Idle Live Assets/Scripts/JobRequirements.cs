@@ -9,8 +9,7 @@ public class JobRequirements : MonoBehaviour
     [HideInInspector]public GameManager gameManager;
 
     private TextMeshProUGUI gameObjectText;
-    public TextMeshProUGUI currentJobText;
-    public TextMeshProUGUI currentJobLvlText;
+    
     
 
     [HideInInspector]public bool skillLvlChangeTrigger;   
@@ -70,8 +69,8 @@ public class JobRequirements : MonoBehaviour
                 }
             }
 
-            currentJobText.text = startParameters.jobsNamesArray[PlayerData.currentJobSelectedNumber];
-            currentJobLvlText.text = PlayerData.jobLvlValue[PlayerData.currentJobSelectedNumber].ToString();
+            
+            
             skillLvlChangeTrigger = false;
         }
     }

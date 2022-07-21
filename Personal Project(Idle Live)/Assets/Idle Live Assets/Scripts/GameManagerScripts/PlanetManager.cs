@@ -86,7 +86,7 @@ public class PlanetManager : MonoBehaviour
 
             if((planetSlider.value / planetSlider.maxValue * 100) < 20)
             {
-                menuChooserScr.ReincarnationCanvas();
+                //menuChooserScr.ReincarnationCanvas();
             }
             
         }
