@@ -21,10 +21,7 @@ public class SkillProgressManager : MonoBehaviour
     //Endurance - Skill Experience //Discipline - Job Experience //Motivation - Job payment //Negotiations - Ecology income //Management - Ecology cost decrease
 
     public float skillBasicCost; //Starting cost of skill
-    private float skillCurrentCost; //Current cost of skill
-
-
-    public int[] skillSkillReq; //Array contains required values of skill for every Skill. 0 is Discipline, 3 is Management
+    [SerializeField]private float skillCurrentCost; //Current cost of skill
 
 
     // Start is called before the first frame update
@@ -46,9 +43,9 @@ public class SkillProgressManager : MonoBehaviour
     void Update()
     {
         MoneyEnding();
-        if (gameManagerScr.isSkillActive == true && gameManagerScr.currentSkill == gameObject.name)
+        if (SavableData.skillIsActive == true && gameManagerScr.currentSkill == gameObject.name)
         {
-            SkillProgress(Time.deltaTime * 50 * PlayerData.skillMultipliersArray[0] * (1 + PlayerPrefs.GetFloat("SkillExpMult")));
+            SkillProgress(Time.deltaTime * 50 * SavableData.skillMultipliersArray[0] * (1 + PlayerPrefs.GetFloat("SkillExpMult")));
         }
     }
 
@@ -62,12 +59,12 @@ public class SkillProgressManager : MonoBehaviour
             progressBar.value = 0;
             currentLvl += 1;
             gameManagerScr.skillExpensesValue -= skillCurrentCost; //We need to erase old value of skill, to assign new value
-            skillCurrentCost *= gameManagerScr.costIncreaser[0];
+            skillCurrentCost *= StartParameters.skillCostIncreaser;
             gameManagerScr.skillExpensesValue += skillCurrentCost;
             lvlValueText.text = currentLvl.ToString();
-            expMaxValue *= gameManagerScr.expHardener[1]; //Each next level need more exprience
+            expMaxValue *= StartParameters.skillExpHardener; //Each next level need more exprience
             progressBar.maxValue = expMaxValue;
-            PlayerData.skillMultipliersArray[skillNumber] += skillMultiplier; //Each next level global multiplier for skillMultipler            
+            SavableData.skillMultipliersArray[skillNumber] += skillMultiplier; //Each next level global multiplier for skillMultipler            
             gameManagerScr.skillsCurrentLvlArray[skillNumber] = currentLvl; //updating array storing current lvls of skills
             jobRequirementsScr.skillLvlChangeTrigger = true; //when current level changed we need to refresh Requirements
             skillRequirementsScr.skillLvlChangeTrigger = true; //when current level changed we need to refresh Requirements
@@ -78,21 +75,21 @@ public class SkillProgressManager : MonoBehaviour
     {
         int x = 0;
 
-        if (gameManagerScr.isSkillActive == false && gameManagerScr.moneyValue > skillCurrentCost) //Starting skill progress
+        if (SavableData.skillIsActive == false && gameManagerScr.moneyValue > skillCurrentCost) //Starting skill progress
         {
-            gameManagerScr.isSkillActive = true;
+            SavableData.skillIsActive = true;
             gameManagerScr.currentSkill = gameObject.name;
             x = 1;
             gameManagerScr.skillExpensesValue += skillCurrentCost;
         }
 
-        if (gameManagerScr.isSkillActive == true && x == 0 && gameManagerScr.currentSkill == gameObject.name) //Stopping skill progress
+        if (SavableData.skillIsActive == true && x == 0 && gameManagerScr.currentSkill == gameObject.name) //Stopping skill progress
         {
-            gameManagerScr.isSkillActive = false;
+            SavableData.skillIsActive = false;
             gameManagerScr.skillExpensesValue = 0;
         }
 
-        if (gameManagerScr.isSkillActive == true && x == 0 && gameManagerScr.currentSkill != gameObject.name) //If push other skill button, we stop previous skill, and start this skill
+        if (SavableData.skillIsActive == true && x == 0 && gameManagerScr.currentSkill != gameObject.name) //If push other skill button, we stop previous skill, and start this skill
         {
             gameManagerScr.currentSkill = gameObject.name;
             gameManagerScr.skillExpensesValue = 0;
@@ -106,7 +103,7 @@ public class SkillProgressManager : MonoBehaviour
 
         if (gameManagerScr.moneyValue < 0)
         {
-            gameManagerScr.isSkillActive = false;
+            SavableData.skillIsActive = false;
             gameManagerScr.skillExpensesValue = 0;
         }
     }

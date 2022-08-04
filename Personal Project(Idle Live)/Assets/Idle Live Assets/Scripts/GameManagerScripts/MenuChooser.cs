@@ -10,16 +10,12 @@ public class MenuChooser : MonoBehaviour
     
     //public TextMeshProUGUI ecoPointsText;
 
-    private GameManager gameManagerScr;    
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        
-        gameManagerScr = gameObject.GetComponent<GameManager>();            
-
-        MenuActivation(PlayerData.openedMenu);
-        
+        MenuActivation(SavableData.openedMenu);        
     }
 
     // Update is called once per frame

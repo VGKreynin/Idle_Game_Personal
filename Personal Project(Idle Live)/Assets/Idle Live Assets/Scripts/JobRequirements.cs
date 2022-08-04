@@ -42,28 +42,28 @@ public class JobRequirements : MonoBehaviour
         {
             gameObjectText.text = "";
 
-            if (PlayerData.currentJobReqNumber < GameManager.jobsArray.Length) //check that not all jobs are opened
+            if (SavableData.jobCurrentReqNumber < StaticFinalData.jobsArray.Length) //check that not all jobs are opened
             {
                 if (IsJobRequirementsMet() == true) //logical part of requirements
                 {
-                    GameManager.jobsArray[PlayerData.currentJobReqNumber].SetActive(true); //activating new job
-                    PlayerData.jobEnabledStatus[PlayerData.currentJobReqNumber] = true;
-                    PlayerData.currentJobReqNumber += 1;                    
+                    StaticFinalData.jobsArray[SavableData.jobCurrentReqNumber].SetActive(true); //activating new job
+                    SavableData.jobEnabledStatus[SavableData.jobCurrentReqNumber] = true;
+                    SavableData.jobCurrentReqNumber += 1;                    
                 }
 
-                if (PlayerData.currentJobReqNumber < GameManager.jobsArray.Length) //visual part of requirements
+                if (SavableData.jobCurrentReqNumber < StaticFinalData.jobsArray.Length) //visual part of requirements
                 {
-                    if(PlayerData.jobLvlValue[PlayerData.currentJobReqNumber - 1] < 10) 
+                    if(SavableData.jobLvlValue[SavableData.jobCurrentReqNumber - 1] < 10) 
                     {
-                        gameObjectText.text += startParameters.jobsNamesArray[PlayerData.currentJobReqNumber - 1] + " " + PlayerData.jobLvlValue[PlayerData.currentJobReqNumber - 1] + "/10 ";
+                        gameObjectText.text += startParameters.jobsNamesArray[SavableData.jobCurrentReqNumber - 1] + " " + SavableData.jobLvlValue[SavableData.jobCurrentReqNumber - 1] + "/10 ";
                     }
                     
                     for (int i = 0; i < startParameters.skillsNamesArray.Length; i++)
                     {
-                        if (gameManager.skillsCurrentLvlArray[i] < startParameters.jobRequiremetsMultiArray[PlayerData.currentJobReqNumber, i])
+                        if (gameManager.skillsCurrentLvlArray[i] < startParameters.jobRequiremetsMultiArray[SavableData.jobCurrentReqNumber, i])
                         {
 
-                            gameObjectText.text += startParameters.skillsNamesArray[i] + " " + gameManager.skillsCurrentLvlArray[i] + "/" + startParameters.jobRequiremetsMultiArray[PlayerData.currentJobReqNumber, i] + " ";
+                            gameObjectText.text += startParameters.skillsNamesArray[i] + " " + gameManager.skillsCurrentLvlArray[i] + "/" + startParameters.jobRequiremetsMultiArray[SavableData.jobCurrentReqNumber, i] + " ";
                         }
                     }
                 }
@@ -77,16 +77,16 @@ public class JobRequirements : MonoBehaviour
     
     private void JobsDeactivation() //Deactivating all jobs accept janitor
     {
-        for (int i = 1; i < GameManager.jobsArray.Length; i++)
+        for (int i = 1; i < StaticFinalData.jobsArray.Length; i++)
         {
-            GameManager.jobsArray[i].SetActive(false);            
+            StaticFinalData.jobsArray[i].SetActive(false);            
         }
     }
 
     private bool IsJobRequirementsMet()
     {
         bool triggerX = false;        
-        int job = PlayerData.jobLvlValue[PlayerData.currentJobReqNumber - 1];
+        int job = SavableData.jobLvlValue[SavableData.jobCurrentReqNumber - 1];
         int x = 1;
         if (job < 10)
         {
@@ -94,7 +94,7 @@ public class JobRequirements : MonoBehaviour
         }
         for (int i = 0; i < startParameters.skillsNamesArray.Length; i++)
         {
-            if ((gameManager.skillsCurrentLvlArray[i] - startParameters.jobRequiremetsMultiArray[PlayerData.currentJobReqNumber, i]) < 0)
+            if ((gameManager.skillsCurrentLvlArray[i] - startParameters.jobRequiremetsMultiArray[SavableData.jobCurrentReqNumber, i]) < 0)
             {
                 x = 0;
             }

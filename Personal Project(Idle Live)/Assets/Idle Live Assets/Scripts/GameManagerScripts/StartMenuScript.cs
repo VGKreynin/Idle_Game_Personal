@@ -7,13 +7,13 @@ public class StartMenuScript : MonoBehaviour
 {
      public void NewGame()
     {
-        PlayerData.newOrContinueGame = 0;
+        SavableData.newOrContinueGame = 0;
         SceneManager.LoadScene("Main Scene");
     }
 
     public void ContinueGame()
     {
-        PlayerData.newOrContinueGame = 1;
+        SavableData.newOrContinueGame = 1;
         SceneManager.LoadScene("Main Scene");
     }
     

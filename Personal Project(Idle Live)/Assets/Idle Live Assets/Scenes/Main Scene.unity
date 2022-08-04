@@ -4379,6 +4379,7 @@ MonoBehaviour:
   ecoCostText: {fileID: 1906337245}
   gameManagerScr: {fileID: 0}
   planetManagerScr: {fileID: 0}
+  basicEcoGain: 0
   ecoBasicLvlCost: 10
   ecoCurrentLvl: 0
   ecoInvestmentNumber: 1
@@ -7866,7 +7867,7 @@ MonoBehaviour:
   skillNumber: 1
   skillMultiplier: 0.5
   skillBasicCost: 5
-  skillSkillReq: 00000000040000000000000000000000
+  skillCurrentCost: 0
 --- !u!114 &395604175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10583,7 +10584,7 @@ MonoBehaviour:
   skillNumber: 4
   skillMultiplier: 0.25
   skillBasicCost: 5
-  skillSkillReq: 00000000000000000000000004000000
+  skillCurrentCost: 0
 --- !u!114 &561430202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11647,7 +11648,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0601261bcbc5cd14ea06b10deea4c48b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManagerScr: {fileID: 1782965450}
   reincarnationButton: {fileID: 2117160434}
   menuChooserScr: {fileID: 1782965452}
   yearsValueText: {fileID: 889563024}
@@ -16736,6 +16736,7 @@ MonoBehaviour:
   ecoCostText: {fileID: 909733695}
   gameManagerScr: {fileID: 0}
   planetManagerScr: {fileID: 0}
+  basicEcoGain: 0
   ecoBasicLvlCost: 10
   ecoCurrentLvl: 0
   ecoInvestmentNumber: 6
@@ -18834,7 +18835,7 @@ MonoBehaviour:
   skillNumber: 2
   skillMultiplier: 0.25
   skillBasicCost: 5
-  skillSkillReq: 00000000020000000000000003000000
+  skillCurrentCost: 0
 --- !u!114 &950505412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21539,7 +21540,7 @@ MonoBehaviour:
   skillNumber: 3
   skillMultiplier: 0.25
   skillBasicCost: 5
-  skillSkillReq: 00000000000000000200000000000000
+  skillCurrentCost: 0
 --- !u!1 &1065756251
 GameObject:
   m_ObjectHideFlags: 0
@@ -25218,6 +25219,7 @@ MonoBehaviour:
   ecoCostText: {fileID: 1107531022}
   gameManagerScr: {fileID: 0}
   planetManagerScr: {fileID: 0}
+  basicEcoGain: 0
   ecoBasicLvlCost: 10
   ecoCurrentLvl: 0
   ecoInvestmentNumber: 5
@@ -25584,7 +25586,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1782965450}
-        m_MethodName: StartMenu
+        m_MethodName: ExitToStartMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -27021,7 +27023,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 176, y: -197}
+  m_AnchoredPosition: {x: 418, y: 370}
   m_SizeDelta: {x: 110, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1343951718
@@ -28231,6 +28233,7 @@ MonoBehaviour:
   ecoCostText: {fileID: 1793513392}
   gameManagerScr: {fileID: 0}
   planetManagerScr: {fileID: 0}
+  basicEcoGain: 0
   ecoBasicLvlCost: 10
   ecoCurrentLvl: 0
   ecoInvestmentNumber: 4
@@ -30553,7 +30556,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 176, y: -307}
+  m_AnchoredPosition: {x: 308, y: 340}
   m_SizeDelta: {x: 110, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1494260851
@@ -30975,7 +30978,7 @@ MonoBehaviour:
   skillNumber: 0
   skillMultiplier: 0.5
   skillBasicCost: 5
-  skillSkillReq: 00000000000000000000000000000000
+  skillCurrentCost: 0
 --- !u!114 &1507758806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32052,6 +32055,7 @@ MonoBehaviour:
   ecoCostText: {fileID: 1379176915}
   gameManagerScr: {fileID: 0}
   planetManagerScr: {fileID: 0}
+  basicEcoGain: 0
   ecoBasicLvlCost: 10
   ecoCurrentLvl: 0
   ecoInvestmentNumber: 3
@@ -35621,7 +35625,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1693421242}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -35750,7 +35754,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 176, y: -250}
+  m_AnchoredPosition: {x: 308, y: 370}
   m_SizeDelta: {x: 110, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1702847729
@@ -36344,6 +36348,7 @@ MonoBehaviour:
   ecoCostText: {fileID: 1690940280}
   gameManagerScr: {fileID: 0}
   planetManagerScr: {fileID: 0}
+  basicEcoGain: 0
   ecoBasicLvlCost: 10
   ecoCurrentLvl: 0
   ecoInvestmentNumber: 2
@@ -37724,8 +37729,10 @@ GameObject:
   - component: {fileID: 1782965450}
   - component: {fileID: 1782965452}
   - component: {fileID: 1782965453}
+  - component: {fileID: 1782965456}
   - component: {fileID: 1782965454}
   - component: {fileID: 1782965455}
+  - component: {fileID: 1782965457}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -37759,13 +37766,6 @@ MonoBehaviour:
   ecoTechExpensesValue: 0
   ecoInvestmentsExpensesValue: 0
   skillExpensesValue: 0
-  expHardener:
-  - 1.1
-  - 1.1
-  - 1.1
-  costIncreaser:
-  - 1.1
-  - 1.1
   techMultipliersArray:
   - 0
   - 0
@@ -37775,21 +37775,9 @@ MonoBehaviour:
   - 0
   - 0
   progressBar: {fileID: 0}
-  isSkillActive: 0
   currentSkill: 
-  currentJobName: 
-  currentSkillName: 
   skillsCurrentLvlArray: 
   ecologyToWin: 100000000
-  jobsArrayX:
-  - {fileID: 1758282959}
-  - {fileID: 414294750}
-  - {fileID: 1988529627}
-  - {fileID: 129480004}
-  - {fileID: 1767660824}
-  - {fileID: 1644914847}
-  - {fileID: 980830885}
-  - {fileID: 623879933}
 --- !u!4 &1782965451
 Transform:
   m_ObjectHideFlags: 0
@@ -37862,6 +37850,13 @@ MonoBehaviour:
   motivationSkillReq: 0700000005000000000000000000000000000000
   negotiatinsSkillReq: 0a00000007000000050000000000000000000000
   managementSkillReq: 0000000000000000000000000a00000000000000
+  jobExpHardenerX: 1.1
+  skillExpHardenerX: 1.1
+  techExpHardenerX: 1.1
+  skillCostIncreaserX: 1.1
+  techCostIncreaserX: 1.1
+  jobPaymentLvlMultiplierX: 0.03
+  techEcologyUpgradeMultiplierX: 0.05
 --- !u!114 &1782965454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37913,6 +37908,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManagerScr: {fileID: 1782965450}
+--- !u!114 &1782965456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782965449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec90d68a3e10041468927cb6b50d105c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jobsNamesArrayX:
+  - Janitor
+  - Cashier
+  - Jr. Coder
+  - Sr. Coder
+  - PRJM
+  - Head of Dep.
+  - CEO
+  - President
+  skillsNamesArrayX:
+  - Endurance
+  - Discipline
+  - Motivation
+  - Negotiations
+  - Management
+  jobsArrayX:
+  - {fileID: 1758282959}
+  - {fileID: 414294750}
+  - {fileID: 1988529627}
+  - {fileID: 129480004}
+  - {fileID: 1767660824}
+  - {fileID: 1644914847}
+  - {fileID: 980830885}
+  - {fileID: 623879933}
+--- !u!114 &1782965457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782965449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99823e2e47a07b0428ce986535740491, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1785606339
 GameObject:
   m_ObjectHideFlags: 0
@@ -42574,6 +42617,7 @@ MonoBehaviour:
   ecoCostText: {fileID: 1455272721}
   gameManagerScr: {fileID: 0}
   planetManagerScr: {fileID: 0}
+  basicEcoGain: 0
   ecoBasicLvlCost: 10
   ecoCurrentLvl: 0
   ecoInvestmentNumber: 0

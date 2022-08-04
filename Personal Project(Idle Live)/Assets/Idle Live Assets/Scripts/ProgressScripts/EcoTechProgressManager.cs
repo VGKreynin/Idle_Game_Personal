@@ -41,7 +41,7 @@ public class EcoTechProgressManager : MonoBehaviour
         MoneyEnding();
         if (isTechActive == true)
         {
-            TechProgress(Time.deltaTime * 50 * PlayerData.skillMultipliersArray[5] * (1 + PlayerPrefs.GetFloat("TechExpMult")));
+            TechProgress(Time.deltaTime * 50 * SavableData.skillMultipliersArray[5] * (1 + PlayerPrefs.GetFloat("TechExpMult")));
         }
     }
 
@@ -54,12 +54,12 @@ public class EcoTechProgressManager : MonoBehaviour
             techProgressValue = 0;
             progressBar.value = 0;
             currentLvl += 1;            
-            gameManagerScr.techMultipliersArray[techNumber] *= 1.05f;
+            gameManagerScr.techMultipliersArray[techNumber] *= StartParameters.techEcologyUpgradeMultiplier;
             gameManagerScr.ecoTechExpensesValue -= ecoTechCurrentCost; //We need to erase old value of skill, to assign new value            
-            ecoTechCurrentCost *= gameManagerScr.costIncreaser[1];
+            ecoTechCurrentCost *= StartParameters.techCostIncreaser;
             gameManagerScr.ecoTechExpensesValue += ecoTechCurrentCost;            
             lvlValueText.text = currentLvl.ToString();
-            expMaxValue *= gameManagerScr.expHardener[2]; //Each next level need more exprience
+            expMaxValue *= StartParameters.techExpHardener; //Each next level need more exprience
             progressBar.maxValue = expMaxValue;
         }
     }

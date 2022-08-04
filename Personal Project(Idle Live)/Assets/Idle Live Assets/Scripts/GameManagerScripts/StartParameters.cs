@@ -17,13 +17,32 @@ public class StartParameters : MonoBehaviour
     public int[] motivationSkillReq, negotiatinsSkillReq, managementSkillReq;
     public int[,] skillRequiremetsMultiArray; //first value is job, second value is skill required values of each skill, from endurance 0 to Management 4
 
+    [Header("Exp Hardener(How hard to get next level. Multiplier.)")]
+    [SerializeField] private float jobExpHardenerX;
+    [SerializeField] private float skillExpHardenerX, techExpHardenerX; //use to set value for public static variables below
+    public static float jobExpHardener, skillExpHardener, techExpHardener; //next level of skill or job or tech demands more expirience. This variable shows how much in %
+
+    [Header("Cost Increasers(For skills and Techs)")]
+    [SerializeField] private float skillCostIncreaserX;
+    [SerializeField] private float techCostIncreaserX; //use to set value for public static variables below
+    public static float skillCostIncreaser, techCostIncreaser; //next level of skill or tech demands more expensive.
+        
+    [Header("Increase payment each lvl in %")]
+    [SerializeField] private float jobPaymentLvlMultiplierX; 
+    public static float jobPaymentLvlMultiplier; 
+        
+    [Header("Increase Ecology return by each lvl of technology in %")]
+    [SerializeField] private float techEcologyUpgradeMultiplierX; 
+    public static float techEcologyUpgradeMultiplier; 
+
     // Start is called before the first frame update
     void Start()
     {
         jobRequiremetsMultiArray = new int[8, (skillsNamesArray.Length + 1)];
         skillRequiremetsMultiArray = new int[5, skillsNamesArray.Length];
         LoadingJobMultiArray();
-        LoadingSkillMultiArray();        
+        LoadingSkillMultiArray();
+        LoadValueForStaticVar();
     }  
 
     private void LoadingJobMultiArray()
@@ -50,5 +69,15 @@ public class StartParameters : MonoBehaviour
             skillRequiremetsMultiArray[3, i] = negotiatinsSkillReq[i];
             skillRequiremetsMultiArray[4, i] = managementSkillReq[i];   
         }
+    }
+
+    private void LoadValueForStaticVar()
+    {
+        jobExpHardener = jobExpHardenerX;
+        skillExpHardener = skillExpHardenerX;
+        techExpHardener = techExpHardenerX;
+
+        skillCostIncreaser = skillCostIncreaserX;
+        techCostIncreaser = techCostIncreaserX;
     }
 }

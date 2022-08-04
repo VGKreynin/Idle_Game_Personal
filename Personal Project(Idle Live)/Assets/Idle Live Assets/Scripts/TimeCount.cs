@@ -5,7 +5,6 @@ using TMPro;
 
 public class TimeCount : MonoBehaviour
 {
-    public GameManager gameManagerScr;
     public GameObject reincarnationButton;
     public MenuChooser menuChooserScr;
 
@@ -16,17 +15,17 @@ public class TimeCount : MonoBehaviour
     void Update()
     {
         TimeCounter(Time.deltaTime);
-        yearsValueText.text = PlayerData.years.ToString("#");
-        daysValueText.text = PlayerData.days.ToString("#");
+        yearsValueText.text = SavableData.years.ToString("#");
+        daysValueText.text = SavableData.days.ToString("#");
     }
 
     public void TimeCounter(float addDay)
     {
-        PlayerData.days -= addDay;
-        if(PlayerData.days < 0)
+        SavableData.days -= addDay;
+        if(SavableData.days < 0)
         {
-            PlayerData.years -= 1;
-            PlayerData.days = 365;
+            SavableData.years -= 1;
+            SavableData.days = 365;
         }
         ReincarnationButtonAppear();
         //Reincarnation();
@@ -34,7 +33,7 @@ public class TimeCount : MonoBehaviour
 
     private void ReincarnationButtonAppear() //Button Reincarnation should appear at 5th year till the end
     {
-        if(PlayerData.years == 19)
+        if(SavableData.years == 19)
         {
             reincarnationButton.SetActive(true);
         }
@@ -43,7 +42,7 @@ public class TimeCount : MonoBehaviour
     /*
     private void Reincarnation() //Go to Reincarnation when year is below 0
     {
-        if (PlayerData.years < 0)
+        if (SavableData.years < 0)
         {
             menuChooserScr.ReincarnationCanvas();
            

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     private StartParameters startParameters;
-    private SaveLoad saveLoadScr;
+    private SaveLoadManager saveLoadScr;
 
     public TextMeshProUGUI moneyValueText;
     public TextMeshProUGUI ecologyValueText;
@@ -20,34 +20,24 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public float moneyValue, ecologyValue, incomeValue, totalExpenses;
     [HideInInspector] public float ecoTechExpensesValue, ecoInvestmentsExpensesValue, skillExpensesValue;
-    
-    public float[] expHardener; //next level of skill or job or tech demands more expirience. This variable shows how much in %
-    //0 - job hardener, 1 - skill hardener, 2 - ecoTechHardener
-    public float[] costIncreaser; //next level of skill or tech demands more money. This variable shows how much in %
-    //0 - skill, 1 - tech increaser
+                
     public float[] techMultipliersArray;//Contains multipliers of all Eco technologies
 
     private float netValue; 
 
-    [HideInInspector] public Slider progressBar;
+    [HideInInspector] public Slider progressBar;    
     
-    [HideInInspector] public bool isSkillActive; //Trigger to start skill progress
-    [HideInInspector] public string currentSkill; //Currently selected job and skill
-    [HideInInspector] public string currentJobName, currentSkillName; //Currently selected job and skill
+    [HideInInspector] public string currentSkill; //Currently selected job and skill    
 
     [HideInInspector] public int[] skillsCurrentLvlArray; //Storing current lvls of all jobs and skills
         
-    public float ecologyToWin; //Emount of Ecology point needed to win the game(WINCONDITION)
-
-    [SerializeField] private GameObject[] jobsArrayX; //This Array stores all jobs and translate them to JobArray static
-    public static GameObject[] jobsArray = new GameObject[8]; //This Array stores all jobs Gameobjects to use
+    public float ecologyToWin; //Emount of Ecology point needed to win the game(WINCONDITION)    
 
     private void Awake()
-    {
-        JobsActivationLoading(); //Loading activation Data of jobs
+    {        
         
         startParameters = gameObject.GetComponent<StartParameters>();
-        saveLoadScr = gameObject.GetComponent<SaveLoad>();
+        saveLoadScr = gameObject.GetComponent<SaveLoadManager>();
 
         saveLoadScr.LoadingGame();
     }
@@ -68,12 +58,11 @@ public class GameManager : MonoBehaviour
         NetCalculation();
         UpdateMoney(Time.deltaTime * netValue);
         IncExpNetVisualise();
-
     }
                
     public void ButtonJobDeactivation() //Stop all Jobs function
     {
-        PlayerData.isJobActive = false;
+        SavableData.jobIsActive = false;
     }
 
     private void UpdateMoney(float addProgress) //Current money calculation method
@@ -99,13 +88,13 @@ public class GameManager : MonoBehaviour
 
     private void NetCalculation() //Net calculation method
     {
-        incomeValue = PlayerData.currentBasicJobPayment * PlayerData.jobPayMultiplier[PlayerData.currentJobSelectedNumber] * PlayerData.skillMultipliersArray[2] * (1 + PlayerData.jobIncMultR);
+        incomeValue = SavableData.currentBasicJobPayment * SavableData.jobPayMultiplier[SavableData.currentJobSelectedNumber] * SavableData.skillMultipliersArray[2] * (1 + SavableData.jobIncMultR);
         netValue = incomeValue - TotalExpenses();
     }
 
     private float TotalExpenses() //Calculating expenses from all activities
     {
-        totalExpenses = (ecoTechExpensesValue * (1 + PlayerPrefs.GetFloat("TechCostMult"))) + (ecoInvestmentsExpensesValue / PlayerData.skillMultipliersArray[4]) + skillExpensesValue;
+        totalExpenses = (ecoTechExpensesValue * (1 + PlayerPrefs.GetFloat("TechCostMult"))) + (ecoInvestmentsExpensesValue / SavableData.skillMultipliersArray[4]) + skillExpensesValue;
         return totalExpenses;
     }
 
@@ -119,9 +108,9 @@ public class GameManager : MonoBehaviour
 
     private void LoadMultipliersArray() //Setting first value of all multipliers to 1
     {
-        for (int i = 0; i < PlayerData.skillMultipliersArray.Length; i++)
+        for (int i = 0; i < SavableData.skillMultipliersArray.Length; i++)
         {
-            PlayerData.skillMultipliersArray[i] = 1;
+            SavableData.skillMultipliersArray[i] = 1;
         }
         
         for (int i = 0; i < techMultipliersArray.Length; i++)
@@ -147,23 +136,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void StartMenu()
+    public void ExitToStartMenu() //Used to got to StartMenuScene
     {
         SceneManager.LoadScene("Start Menu");
     }         
-
-    public void JobsActivationLoading()
-    {
-        Debug.Log("JobArrayLoading");
-        for (int i = 0; i < jobsArrayX.Length; i++) //Copying jobs gameobjects to static massive
-        {
-            jobsArray[i] = jobsArrayX[i];
-            jobsArray[i].SetActive(PlayerData.jobEnabledStatus[i]);
-        }
-    }
+        
     public void NewOrContinueValue(int newOrContinue)
     {
-        PlayerData.newOrContinueGame = newOrContinue;
+        SavableData.newOrContinueGame = newOrContinue;
         SceneManager.LoadScene("Main Scene");
     }
 }

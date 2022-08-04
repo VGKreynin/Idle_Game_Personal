@@ -46,191 +46,191 @@ public class ReincarnationManager : MonoBehaviour
     public void ReincarnationUpgrades(int x)
     {
         //JOB INCOME
-        if (x == 1 && jobIncomeLvlCost[PlayerData.jobIncMultLvlR] <= PlayerPrefs.GetInt("Ecology Points")) //Buying upgrade
+        if (x == 1 && jobIncomeLvlCost[SavableData.jobIncMultLvlR] <= PlayerPrefs.GetInt("Ecology Points")) //Buying upgrade
         {
             int y = PlayerPrefs.GetInt("Ecology Points");
-            y -= jobIncomeLvlCost[PlayerData.jobIncMultLvlR];
+            y -= jobIncomeLvlCost[SavableData.jobIncMultLvlR];
             PlayerPrefs.SetInt("Ecology Points", y);
             ecoPointsText.text = y.ToString();
-            PlayerData.jobIncMultR += 0.05f;
-            PlayerData.jobIncMultLvlR += 1;                      
-            jobIncText.text = "X: +" + (PlayerData.jobIncMultR * 100).ToString("##") + "%"; //Updating gain % text
-            jobIncLvlText.text = "Lvl: " + PlayerData.jobIncMultLvlR + "/10"; //Updating lvl text
+            SavableData.jobIncMultR += 0.05f;
+            SavableData.jobIncMultLvlR += 1;                      
+            jobIncText.text = "X: +" + (SavableData.jobIncMultR * 100).ToString("##") + "%"; //Updating gain % text
+            jobIncLvlText.text = "Lvl: " + SavableData.jobIncMultLvlR + "/10"; //Updating lvl text
         }
-        if (PlayerData.jobIncMultLvlR == 10)
+        if (SavableData.jobIncMultLvlR == 10)
         {
             jobUpgradeButton.SetActive(false);
         }
-        if (PlayerData.jobIncMultLvlR < 10)
+        if (SavableData.jobIncMultLvlR < 10)
         {
-            jobIncCostText.text = jobIncomeLvlCost[PlayerData.jobIncMultLvlR] + " EP";
+            jobIncCostText.text = jobIncomeLvlCost[SavableData.jobIncMultLvlR] + " EP";
         }
 
         //JOB EXP
-        if (x == 2 && jobExpLvlCost[PlayerData.jobExpMultLvlR] <= PlayerPrefs.GetInt("Ecology Points")) //Buying upgrade
+        if (x == 2 && jobExpLvlCost[SavableData.jobExpMultLvlR] <= PlayerPrefs.GetInt("Ecology Points")) //Buying upgrade
         {
             int y = PlayerPrefs.GetInt("Ecology Points");
-            y -= jobExpLvlCost[PlayerData.jobExpMultLvlR];
+            y -= jobExpLvlCost[SavableData.jobExpMultLvlR];
             PlayerPrefs.SetInt("Ecology Points", y);
             ecoPointsText.text = y.ToString();
-            PlayerData.jobExpMultR += 0.05f;
-            PlayerData.jobExpMultLvlR += 1;                     
-            jobExpText.text = "X: +" + (PlayerData.jobExpMultR * 100).ToString("##") + "%"; //Updating gain % text
-            jobExpLvlText.text = "Lvl: " + PlayerData.jobExpMultLvlR + "/10"; //Updating lvl text
+            SavableData.jobExpMultR += 0.05f;
+            SavableData.jobExpMultLvlR += 1;                     
+            jobExpText.text = "X: +" + (SavableData.jobExpMultR * 100).ToString("##") + "%"; //Updating gain % text
+            jobExpLvlText.text = "Lvl: " + SavableData.jobExpMultLvlR + "/10"; //Updating lvl text
         }
-        if (PlayerData.jobExpMultLvlR == 10)
+        if (SavableData.jobExpMultLvlR == 10)
         {
             jobExpButton.SetActive(false);
         }
-        if (PlayerData.jobExpMultLvlR < 10)
+        if (SavableData.jobExpMultLvlR < 10)
         {
-            jobExpCostText.text = jobExpLvlCost[PlayerData.jobExpMultLvlR] + " EP";
+            jobExpCostText.text = jobExpLvlCost[SavableData.jobExpMultLvlR] + " EP";
         }
 
         //SKILL EXP
-        if (x == 3 && skillExpLvlCost[PlayerData.skillExpMultLvlR] <= PlayerPrefs.GetInt("Ecology Points")) //Buying upgrade
+        if (x == 3 && skillExpLvlCost[SavableData.skillExpMultLvlR] <= PlayerPrefs.GetInt("Ecology Points")) //Buying upgrade
         {
             int y = PlayerPrefs.GetInt("Ecology Points");
-            y -= skillExpLvlCost[PlayerData.skillExpMultLvlR];
+            y -= skillExpLvlCost[SavableData.skillExpMultLvlR];
             PlayerPrefs.SetInt("Ecology Points", y);
             ecoPointsText.text = y.ToString();
-            PlayerData.skillExpMultR += 0.05f;
-            PlayerData.skillExpMultLvlR += 1;            
-            skillExpText.text = "X: +" + (PlayerData.skillExpMultR * 100).ToString("##") + "%"; //Updating gain % text
-            skillExpLvlText.text = "Lvl: " + PlayerData.skillExpMultLvlR + "/10"; //Updating lvl text
+            SavableData.skillExpMultR += 0.05f;
+            SavableData.skillExpMultLvlR += 1;            
+            skillExpText.text = "X: +" + (SavableData.skillExpMultR * 100).ToString("##") + "%"; //Updating gain % text
+            skillExpLvlText.text = "Lvl: " + SavableData.skillExpMultLvlR + "/10"; //Updating lvl text
         }
-        if (PlayerData.skillExpMultLvlR == 10)
+        if (SavableData.skillExpMultLvlR == 10)
         {
             skillExpButton.SetActive(false);
         }
-        if (PlayerData.skillExpMultLvlR < 10)
+        if (SavableData.skillExpMultLvlR < 10)
         {
-            skillExpCostText.text = skillExpLvlCost[PlayerData.skillExpMultLvlR] + " EP";
+            skillExpCostText.text = skillExpLvlCost[SavableData.skillExpMultLvlR] + " EP";
         }
 
         //TECH EXP
-        if (x == 4 && techExpLvlCost[PlayerData.techExpMultLvlR] <= PlayerPrefs.GetInt("Ecology Points")) //Buying upgrade
+        if (x == 4 && techExpLvlCost[SavableData.techExpMultLvlR] <= PlayerPrefs.GetInt("Ecology Points")) //Buying upgrade
         {
             int y = PlayerPrefs.GetInt("Ecology Points");
-            y -= techExpLvlCost[PlayerData.techExpMultLvlR];
+            y -= techExpLvlCost[SavableData.techExpMultLvlR];
             PlayerPrefs.SetInt("Ecology Points", y);
             ecoPointsText.text = y.ToString();
-            PlayerData.techExpMultR += 0.05f;
-            PlayerData.techExpMultLvlR += 1;            
-            techExpText.text = "X: +" + (PlayerData.techExpMultR * 100).ToString("##") + "%"; //Updating gain % text
-            techExpLvlText.text = "Lvl: " + PlayerData.techExpMultLvlR + "/10"; //Updating lvl text
+            SavableData.techExpMultR += 0.05f;
+            SavableData.techExpMultLvlR += 1;            
+            techExpText.text = "X: +" + (SavableData.techExpMultR * 100).ToString("##") + "%"; //Updating gain % text
+            techExpLvlText.text = "Lvl: " + SavableData.techExpMultLvlR + "/10"; //Updating lvl text
         }
-        if (PlayerData.techExpMultLvlR == 10)
+        if (SavableData.techExpMultLvlR == 10)
         {
             techExpButton.SetActive(false);
         }
-        if (PlayerData.techExpMultLvlR < 10)
+        if (SavableData.techExpMultLvlR < 10)
         {
-            techExpCostText.text = techExpLvlCost[PlayerData.techExpMultLvlR] + " EP";
+            techExpCostText.text = techExpLvlCost[SavableData.techExpMultLvlR] + " EP";
         }
 
         //TECH COST
-        if (x == 5 && techCostLvlCost[PlayerData.techCostMultLvlR] <= PlayerPrefs.GetInt("Ecology Points")) //Buying upgrade
+        if (x == 5 && techCostLvlCost[SavableData.techCostMultLvlR] <= PlayerPrefs.GetInt("Ecology Points")) //Buying upgrade
         {
             int y = PlayerPrefs.GetInt("Ecology Points");
-            y -= techExpLvlCost[PlayerData.techCostMultLvlR];
+            y -= techExpLvlCost[SavableData.techCostMultLvlR];
             PlayerPrefs.SetInt("Ecology Points", y);
             ecoPointsText.text = y.ToString();
-            PlayerData.techCostMultR -= 0.01f;
-            PlayerData.techCostMultLvlR += 1;
-            techCostText.text = "X: " + (PlayerData.techCostMultR * 100).ToString("##") + "%"; //Updating gain % text
-            techCostLvlText.text = "Lvl: " + PlayerData.techCostMultLvlR + "/10"; //Updating lvl text
+            SavableData.techCostMultR -= 0.01f;
+            SavableData.techCostMultLvlR += 1;
+            techCostText.text = "X: " + (SavableData.techCostMultR * 100).ToString("##") + "%"; //Updating gain % text
+            techCostLvlText.text = "Lvl: " + SavableData.techCostMultLvlR + "/10"; //Updating lvl text
         }
-        if (PlayerData.techCostMultLvlR == 10)
+        if (SavableData.techCostMultLvlR == 10)
         {
             techCostButton.SetActive(false);
         }
-        if (PlayerData.techCostMultLvlR < 10)
+        if (SavableData.techCostMultLvlR < 10)
         {
-            techCostCostText.text = techCostLvlCost[PlayerData.techCostMultLvlR] + " EP";
+            techCostCostText.text = techCostLvlCost[SavableData.techCostMultLvlR] + " EP";
         }
     }    
 
     public void HardResetPrefs()
     {
         PlayerPrefs.DeleteKey("Ecology Points");
-        PlayerData.jobIncMultR = 0;
-        PlayerData.jobIncMultLvlR = 0;
-        PlayerData.jobExpMultR = 0;
-        PlayerData.jobExpMultLvlR = 0;
-        PlayerData.skillExpMultR = 0;
-        PlayerData.skillExpMultLvlR = 0;
-        PlayerData.techExpMultR = 0;
-        PlayerData.techExpMultLvlR = 0;
-        PlayerData.techCostMultR = 0;
-        PlayerData.techCostMultLvlR = 0;        
+        SavableData.jobIncMultR = 0;
+        SavableData.jobIncMultLvlR = 0;
+        SavableData.jobExpMultR = 0;
+        SavableData.jobExpMultLvlR = 0;
+        SavableData.skillExpMultR = 0;
+        SavableData.skillExpMultLvlR = 0;
+        SavableData.techExpMultR = 0;
+        SavableData.techExpMultLvlR = 0;
+        SavableData.techCostMultR = 0;
+        SavableData.techCostMultLvlR = 0;        
     }
 
     public void LoadingReincarnationScreen()
     {
         // JOB INCOME 
-        if (PlayerData.jobIncMultR == 0)
+        if (SavableData.jobIncMultR == 0)
         {
             jobIncText.text = "X: +0%"; //Updating gain % text
         }
         else
         {
-            jobIncText.text = "X: " + (PlayerData.jobIncMultR * 100).ToString("##") + "%"; //Updating gain % text
+            jobIncText.text = "X: " + (SavableData.jobIncMultR * 100).ToString("##") + "%"; //Updating gain % text
         }
-        jobIncLvlText.text = "Lvl: " + PlayerData.jobIncMultLvlR + "/10"; //Updating lvl text
-        if (PlayerData.jobIncMultLvlR < 10)
+        jobIncLvlText.text = "Lvl: " + SavableData.jobIncMultLvlR + "/10"; //Updating lvl text
+        if (SavableData.jobIncMultLvlR < 10)
         {
-            jobIncCostText.text = jobIncomeLvlCost[PlayerData.jobIncMultLvlR] + " EP";
+            jobIncCostText.text = jobIncomeLvlCost[SavableData.jobIncMultLvlR] + " EP";
         }
-        if (PlayerData.jobIncMultLvlR == 10) //Button upgrade shouldnt appear after reload if upgrade is max
+        if (SavableData.jobIncMultLvlR == 10) //Button upgrade shouldnt appear after reload if upgrade is max
         {
             jobUpgradeButton.SetActive(false);
         }
 
         // JOB EXP        
-        jobExpText.text = "X: " + (PlayerData.jobExpMultR * 100 + 100).ToString("##") + "%"; //Updating gain % text
-        jobExpLvlText.text = "Lvl: " + PlayerData.jobExpMultLvlR + "/10"; //Updating lvl text
-        if (PlayerData.jobExpMultLvlR < 10)
+        jobExpText.text = "X: " + (SavableData.jobExpMultR * 100 + 100).ToString("##") + "%"; //Updating gain % text
+        jobExpLvlText.text = "Lvl: " + SavableData.jobExpMultLvlR + "/10"; //Updating lvl text
+        if (SavableData.jobExpMultLvlR < 10)
         {
-            jobExpCostText.text = jobExpLvlCost[PlayerData.jobExpMultLvlR] + " EP";
+            jobExpCostText.text = jobExpLvlCost[SavableData.jobExpMultLvlR] + " EP";
         }
-        if (PlayerData.jobExpMultLvlR == 10) //Button upgrade shouldnt appear after reload if upgrade is max
+        if (SavableData.jobExpMultLvlR == 10) //Button upgrade shouldnt appear after reload if upgrade is max
         {
             jobExpButton.SetActive(false);
         }
 
         // SKILL EXP        
-        skillExpText.text = "X: " + (PlayerData.skillExpMultR * 100 + 100).ToString("##") + "%"; //Updating gain % text
-        skillExpLvlText.text = "Lvl: " + PlayerData.skillExpMultLvlR + "/10"; //Updating lvl text
-        if (PlayerData.skillExpMultLvlR < 10)
+        skillExpText.text = "X: " + (SavableData.skillExpMultR * 100 + 100).ToString("##") + "%"; //Updating gain % text
+        skillExpLvlText.text = "Lvl: " + SavableData.skillExpMultLvlR + "/10"; //Updating lvl text
+        if (SavableData.skillExpMultLvlR < 10)
         {
-            skillExpCostText.text = skillExpLvlCost[PlayerData.skillExpMultLvlR] + " EP";
+            skillExpCostText.text = skillExpLvlCost[SavableData.skillExpMultLvlR] + " EP";
         }
-        if (PlayerData.skillExpMultLvlR == 10) //Button upgrade shouldnt appear after reload if upgrade is max
+        if (SavableData.skillExpMultLvlR == 10) //Button upgrade shouldnt appear after reload if upgrade is max
         {
             skillExpButton.SetActive(false);
         }
 
         // TECH EXP        
-        techExpText.text = "X: " + (PlayerData.techExpMultR * 100 + 100).ToString("##") + "%"; //Updating gain % text
-        techExpLvlText.text = "Lvl: " + PlayerData.techExpMultLvlR + "/10"; //Updating lvl text
-        if (PlayerData.techExpMultLvlR < 10)
+        techExpText.text = "X: " + (SavableData.techExpMultR * 100 + 100).ToString("##") + "%"; //Updating gain % text
+        techExpLvlText.text = "Lvl: " + SavableData.techExpMultLvlR + "/10"; //Updating lvl text
+        if (SavableData.techExpMultLvlR < 10)
         {
-            techExpCostText.text = techExpLvlCost[PlayerData.techExpMultLvlR] + " EP";
+            techExpCostText.text = techExpLvlCost[SavableData.techExpMultLvlR] + " EP";
         }
-        if (PlayerData.techExpMultLvlR == 10) //Button upgrade shouldnt appear after reload if upgrade is max
+        if (SavableData.techExpMultLvlR == 10) //Button upgrade shouldnt appear after reload if upgrade is max
         {
             techExpButton.SetActive(false);
         }
 
         // TECH COST        
-        techCostText.text = "X: " + (PlayerData.techCostMultR * 100 + 100).ToString("##") + "%"; //Updating gain % text
-        techCostLvlText.text = "Lvl: " + PlayerData.techCostMultLvlR + "/10"; //Updating lvl text
-        if (PlayerData.techCostMultLvlR < 10)
+        techCostText.text = "X: " + (SavableData.techCostMultR * 100 + 100).ToString("##") + "%"; //Updating gain % text
+        techCostLvlText.text = "Lvl: " + SavableData.techCostMultLvlR + "/10"; //Updating lvl text
+        if (SavableData.techCostMultLvlR < 10)
         {
-            techCostCostText.text = techCostLvlCost[PlayerData.techCostMultLvlR] + " EP";
+            techCostCostText.text = techCostLvlCost[SavableData.techCostMultLvlR] + " EP";
         }
-        if (PlayerData.techCostMultLvlR == 10) //Button upgrade shouldnt appear after reload if upgrade is max
+        if (SavableData.techCostMultLvlR == 10) //Button upgrade shouldnt appear after reload if upgrade is max
         {
             techCostButton.SetActive(false);
         }

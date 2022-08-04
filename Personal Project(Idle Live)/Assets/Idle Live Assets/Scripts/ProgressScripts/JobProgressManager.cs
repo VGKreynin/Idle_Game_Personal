@@ -9,8 +9,7 @@ public class JobProgressManager : MonoBehaviour
     public TextMeshProUGUI lvlValueText;
     
     private Slider progressBar;
-
-    private GameManager gameManagerScr;
+    
     private JobRequirements jobRequirementsScr;
     private SkillRequirements skillRequirementsScr;        
     
@@ -21,11 +20,10 @@ public class JobProgressManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //PlayerData.jobExpMaxValue[jobNumber] = 100;       
-        lvlValueText.text = PlayerData.jobLvlValue[jobNumber].ToString();
+        //SavableData.jobExpMaxValue[jobNumber] = 100;       
+        lvlValueText.text = SavableData.jobLvlValue[jobNumber].ToString();
         progressBar = GetComponent<Slider>();
-        progressBar.value = PlayerData.jobExpCurrentValue[jobNumber];        
-        gameManagerScr = GameObject.Find("GameManager").GetComponent<GameManager>();        
+        progressBar.value = SavableData.jobExpCurrentValue[jobNumber];                
         jobRequirementsScr = GameObject.Find("Job Requirements Value").GetComponent<JobRequirements>();
         skillRequirementsScr = GameObject.Find("Skill Requirements Value").GetComponent<SkillRequirements>();
     }
@@ -33,15 +31,15 @@ public class JobProgressManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerData.isJobActive == true && PlayerData.currentJobSelectedNumber == jobNumber)            
+        if (SavableData.jobIsActive == true && SavableData.currentJobSelectedNumber == jobNumber)            
         {                   
-            JobProgress(Time.deltaTime * 50 * PlayerData.skillMultipliersArray[1] * (1 + PlayerPrefs.GetFloat("JobExpMult")));                               
+            JobProgress(Time.deltaTime * 50 * SavableData.skillMultipliersArray[1] * (1 + PlayerPrefs.GetFloat("JobExpMult")));                               
         }
-        else if (PlayerData.jobLvlLoading[jobNumber] == true) //This triggered one time when game load
+        else if (SavableData.jobLvlLoading[jobNumber] == true) //This triggered one time when game load
         {
-            lvlValueText.text = PlayerData.jobLvlValue[jobNumber].ToString();
-            progressBar.maxValue = PlayerData.jobExpMaxValue[jobNumber];
-            PlayerData.jobLvlLoading[jobNumber] = false;
+            lvlValueText.text = SavableData.jobLvlValue[jobNumber].ToString();
+            progressBar.maxValue = SavableData.jobExpMaxValue[jobNumber];
+            SavableData.jobLvlLoading[jobNumber] = false;
         }
 
     }
@@ -49,31 +47,31 @@ public class JobProgressManager : MonoBehaviour
     private void JobProgress(float addProgress)
     {       
         progressBar.value += addProgress;
-        PlayerData.jobExpCurrentValue[jobNumber] = progressBar.value; //This used to save/load data
-        if (progressBar.value >= PlayerData.jobExpMaxValue[jobNumber])
+        SavableData.jobExpCurrentValue[jobNumber] = progressBar.value; //This used to save/load data
+        if (progressBar.value >= SavableData.jobExpMaxValue[jobNumber])
         {
             progressBar.value = 0;
-            PlayerData.jobExpCurrentValue[jobNumber] = 0; //This used to save/load data
-            PlayerData.jobLvlValue[jobNumber] += 1;
-            lvlValueText.text = PlayerData.jobLvlValue[jobNumber].ToString();
-            PlayerData.jobExpMaxValue[jobNumber] *= gameManagerScr.expHardener[0]; //Each next level need more exprience
-            progressBar.maxValue = PlayerData.jobExpMaxValue[jobNumber];
-            PlayerData.jobPayMultiplier[jobNumber] += 0.03f; //3% increase of payment per level
-            PlayerData.currentJobPayMultiplier = PlayerData.jobPayMultiplier[jobNumber];            
+            SavableData.jobExpCurrentValue[jobNumber] = 0; //This used to save/load data
+            SavableData.jobLvlValue[jobNumber] += 1;
+            lvlValueText.text = SavableData.jobLvlValue[jobNumber].ToString();
+            SavableData.jobExpMaxValue[jobNumber] *= StartParameters.jobExpHardener; //Each next level need more exprience
+            progressBar.maxValue = SavableData.jobExpMaxValue[jobNumber];
+            SavableData.jobPayMultiplier[jobNumber] += StartParameters.jobPaymentLvlMultiplier; //increase of payment per level
+            SavableData.currentJobPayMultiplier = SavableData.jobPayMultiplier[jobNumber];            
             jobRequirementsScr.skillLvlChangeTrigger = true; //when current level changed we need to refresh Requirements
             skillRequirementsScr.skillLvlChangeTrigger = true; //when current level changed we need to refresh Requirements
-        } else if (PlayerData.jobLvlLoading[jobNumber] == true) //This triggered one time when game load
+        } else if (SavableData.jobLvlLoading[jobNumber] == true) //This triggered one time when game load
         {
-            lvlValueText.text = PlayerData.jobLvlValue[jobNumber].ToString();
-            progressBar.maxValue = PlayerData.jobExpMaxValue[jobNumber];
-            PlayerData.jobLvlLoading[jobNumber] = false;
+            lvlValueText.text = SavableData.jobLvlValue[jobNumber].ToString();
+            progressBar.maxValue = SavableData.jobExpMaxValue[jobNumber];
+            SavableData.jobLvlLoading[jobNumber] = false;
         }
     }
     public void JobActivation() //Activate job, when click on slider
     {
-        PlayerData.isJobActive = true;        
-        PlayerData.currentBasicJobPayment = basicJobPayment;
-        PlayerData.currentJobPayMultiplier = PlayerData.jobPayMultiplier[jobNumber];
-        PlayerData.currentJobSelectedNumber = jobNumber;
+        SavableData.jobIsActive = true;        
+        SavableData.currentBasicJobPayment = basicJobPayment;
+        SavableData.currentJobPayMultiplier = SavableData.jobPayMultiplier[jobNumber];
+        SavableData.currentJobSelectedNumber = jobNumber;
     }        
 }

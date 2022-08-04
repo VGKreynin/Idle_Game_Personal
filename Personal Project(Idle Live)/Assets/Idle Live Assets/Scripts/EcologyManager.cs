@@ -13,7 +13,7 @@ public class EcologyManager : MonoBehaviour
     [HideInInspector] public GameManager gameManagerScr;
     [HideInInspector] public PlanetManager planetManagerScr;
     
-    private float basicEcoGain; // How much you gain at this ecology basically
+    [SerializeField]private float basicEcoGain; // How much you gain at this ecology basically
     public float ecoBasicLvlCost; // The cost of lvl of ecology
     public int ecoCurrentLvl;
     public int ecoInvestmentNumber;
@@ -27,8 +27,7 @@ public class EcologyManager : MonoBehaviour
         gameManagerScr = GameObject.Find("GameManager").GetComponent<GameManager>();
         planetManagerScr = GameObject.Find("Planet").GetComponent<PlanetManager>();
         ecoCostText.text = "Cost: " + ecoBasicLvlCost.ToString("##");
-        buttonMultiplier = 1; //Default value
-        basicEcoGain = 10;
+        buttonMultiplier = 1; //Default value        
                 
     }
 
