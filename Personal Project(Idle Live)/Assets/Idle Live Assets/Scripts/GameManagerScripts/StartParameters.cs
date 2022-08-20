@@ -79,5 +79,8 @@ public class StartParameters : MonoBehaviour
 
         skillCostIncreaser = skillCostIncreaserX;
         techCostIncreaser = techCostIncreaserX;
+
+        jobPaymentLvlMultiplier = jobPaymentLvlMultiplierX;
+        techEcologyUpgradeMultiplier = techEcologyUpgradeMultiplierX;
     }
 }

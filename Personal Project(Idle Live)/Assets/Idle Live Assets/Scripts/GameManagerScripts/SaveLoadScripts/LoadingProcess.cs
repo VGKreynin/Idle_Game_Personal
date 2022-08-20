@@ -7,7 +7,7 @@ public class LoadingProcess : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("LoadingProcessScript");
+        //Debug.Log("LoadingProcessScript");
         JobsActivationLoading();
     }    
 

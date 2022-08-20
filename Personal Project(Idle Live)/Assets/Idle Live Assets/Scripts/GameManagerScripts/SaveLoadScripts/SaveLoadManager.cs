@@ -58,7 +58,11 @@ public class SaveLoadManager : MonoBehaviour
             public int currentJobSelectedNumber; //USed to show current job on main screen
 
         //Skill Data
-        public float[] skillMultipliersArray = new float[5];
+        public float enduranceMultiplierSkillExp;
+        public float discMultiplierJobExp; //Discipline skill affects exp progress of all jobs
+        public float motivMultiplierJobPay; //Motivation skill affects payment progress of all jobs
+        public float negotiationMultiplierEcoIncome; //Negotiations skill affects Ecology income
+        public float managementMultiplierEcoCostDecr; //Management skill affects Ecology cost decrease
 
         //Reincarnation Data
         public float jobIncMultR; //Stores the multipluer of job income from Reincarnation upgrade
@@ -101,10 +105,12 @@ public class SaveLoadManager : MonoBehaviour
             data.currentJobSelectedNumber = SavableData.currentJobSelectedNumber;
 
         //Skill Data
-        for (int i = 0; i < SavableData.skillMultipliersArray.Length; i++)
-        {           
-            data.skillMultipliersArray[i] = SavableData.skillMultipliersArray[i];
-        }
+        data.enduranceMultiplierSkillExp = SavableData.enduranceMultiplierSkillExp;
+        data.discMultiplierJobExp = SavableData.discMultiplierJobExp;
+        data.motivMultiplierJobPay = SavableData.motivMultiplierJobPay;
+        data.negotiationMultiplierEcoIncome = SavableData.negotiationMultiplierEcoIncome;
+        data.managementMultiplierEcoCostDecr = SavableData.managementMultiplierEcoCostDecr;
+
 
         //Reincarnation Data
         data.jobIncMultR = SavableData.jobIncMultR;
@@ -149,10 +155,13 @@ public class SaveLoadManager : MonoBehaviour
             SavableData.currentJobSelectedNumber = data.currentJobSelectedNumber;
 
         //Skill Data
-        for (int i = 0; i < SavableData.skillMultipliersArray.Length; i++)
-        {
-            SavableData.skillMultipliersArray[i] = data.skillMultipliersArray[i];
-        }
+        SavableData.enduranceMultiplierSkillExp = data.enduranceMultiplierSkillExp;
+        SavableData.discMultiplierJobExp = data.discMultiplierJobExp;
+        SavableData.motivMultiplierJobPay = data.motivMultiplierJobPay;
+        SavableData.negotiationMultiplierEcoIncome = data.negotiationMultiplierEcoIncome;
+        SavableData.managementMultiplierEcoCostDecr = data.managementMultiplierEcoCostDecr;
+
+
 
         //Reincarnation Data
         SavableData.jobIncMultR = data.jobIncMultR;
@@ -198,10 +207,11 @@ public class SaveLoadManager : MonoBehaviour
             SavableData.currentJobSelectedNumber = 0;
 
         //Skill data
-        for (int i = 0; i < SavableData.skillMultipliersArray.Length; i++)
-        {
-            SavableData.skillMultipliersArray[i] = 1;
-        }
+        SavableData.enduranceMultiplierSkillExp = 1;
+        SavableData.discMultiplierJobExp = 1;
+        SavableData.motivMultiplierJobPay = 1;
+        SavableData.negotiationMultiplierEcoIncome = 1;
+        SavableData.managementMultiplierEcoCostDecr = 1;
 
         //Reincarnation Data
         SavableData.jobIncMultR = 0;
@@ -244,10 +254,11 @@ public class SaveLoadManager : MonoBehaviour
         SavableData.currentJobSelectedNumber = 0;
 
         //Skill data
-        for (int i = 0; i < SavableData.skillMultipliersArray.Length; i++)
-        {
-            SavableData.skillMultipliersArray[i] = 1;
-        }
+        SavableData.enduranceMultiplierSkillExp = 1;
+        SavableData.discMultiplierJobExp = 1;
+        SavableData.motivMultiplierJobPay = 1;
+        SavableData.negotiationMultiplierEcoIncome = 1;
+        SavableData.managementMultiplierEcoCostDecr = 1;
 
     }
     public void LoadingGame() //This method used in GameManager at Start, to load data when loading Scene
@@ -268,6 +279,12 @@ public class SaveLoadManager : MonoBehaviour
             SavableData.newOrContinueGame = 10;
             Time.timeScale = 1;
         }
-    }  
+    }
+
+    public void NewOrContinueValue(int newOrContinue)
+    {
+        SavableData.newOrContinueGame = newOrContinue;
+        SceneManager.LoadScene("Main Scene");
+    }
 
 }

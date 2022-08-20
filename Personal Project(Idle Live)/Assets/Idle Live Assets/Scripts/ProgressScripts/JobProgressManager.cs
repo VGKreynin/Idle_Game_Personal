@@ -33,7 +33,7 @@ public class JobProgressManager : MonoBehaviour
     {
         if (SavableData.jobIsActive == true && SavableData.currentJobSelectedNumber == jobNumber)            
         {                   
-            JobProgress(Time.deltaTime * 50 * SavableData.skillMultipliersArray[1] * (1 + PlayerPrefs.GetFloat("JobExpMult")));                               
+            JobProgress(Time.deltaTime * 50 * SavableData.discMultiplierJobExp * (1 + PlayerPrefs.GetFloat("JobExpMult")));                               
         }
         else if (SavableData.jobLvlLoading[jobNumber] == true) //This triggered one time when game load
         {
@@ -56,7 +56,7 @@ public class JobProgressManager : MonoBehaviour
             lvlValueText.text = SavableData.jobLvlValue[jobNumber].ToString();
             SavableData.jobExpMaxValue[jobNumber] *= StartParameters.jobExpHardener; //Each next level need more exprience
             progressBar.maxValue = SavableData.jobExpMaxValue[jobNumber];
-            SavableData.jobPayMultiplier[jobNumber] += StartParameters.jobPaymentLvlMultiplier; //increase of payment per level
+            SavableData.jobPayMultiplier[jobNumber] += StartParameters.jobPaymentLvlMultiplier; //increase of payment per level            
             SavableData.currentJobPayMultiplier = SavableData.jobPayMultiplier[jobNumber];            
             jobRequirementsScr.skillLvlChangeTrigger = true; //when current level changed we need to refresh Requirements
             skillRequirementsScr.skillLvlChangeTrigger = true; //when current level changed we need to refresh Requirements

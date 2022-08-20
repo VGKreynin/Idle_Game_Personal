@@ -26685,7 +26685,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1297644116}
   m_Direction: 2
   m_Value: 0.00000011993293
-  m_Size: 0.00000011748935
+  m_Size: 0.5101873
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -30602,7 +30602,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1782965450}
+      - m_Target: {fileID: 1782965455}
         m_MethodName: NewOrContinueValue
         m_Mode: 3
         m_Arguments:
@@ -45454,13 +45454,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1782965452}
-        m_MethodName: ReincarnationCanvas
-        m_Mode: 1
+      - m_Target: {fileID: 1782965455}
+        m_MethodName: NewOrContinueValue
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

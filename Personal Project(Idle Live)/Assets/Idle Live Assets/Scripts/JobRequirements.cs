@@ -18,7 +18,7 @@ public class JobRequirements : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Jobreq Start");
+        //Debug.Log("Jobreq Start");
         startParameters = GameObject.Find("GameManager").GetComponent<StartParameters>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 

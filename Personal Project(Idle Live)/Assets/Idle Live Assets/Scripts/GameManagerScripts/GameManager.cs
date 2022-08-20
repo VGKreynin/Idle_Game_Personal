@@ -88,13 +88,13 @@ public class GameManager : MonoBehaviour
 
     private void NetCalculation() //Net calculation method
     {
-        incomeValue = SavableData.currentBasicJobPayment * SavableData.jobPayMultiplier[SavableData.currentJobSelectedNumber] * SavableData.skillMultipliersArray[2] * (1 + SavableData.jobIncMultR);
+        incomeValue = SavableData.currentBasicJobPayment * SavableData.jobPayMultiplier[SavableData.currentJobSelectedNumber] * SavableData.motivMultiplierJobPay * (1 + SavableData.jobIncMultR);
         netValue = incomeValue - TotalExpenses();
     }
 
     private float TotalExpenses() //Calculating expenses from all activities
     {
-        totalExpenses = (ecoTechExpensesValue * (1 + PlayerPrefs.GetFloat("TechCostMult"))) + (ecoInvestmentsExpensesValue / SavableData.skillMultipliersArray[4]) + skillExpensesValue;
+        totalExpenses = (ecoTechExpensesValue * (1 + PlayerPrefs.GetFloat("TechCostMult"))) + (ecoInvestmentsExpensesValue / SavableData.managementMultiplierEcoCostDecr) + skillExpensesValue;
         return totalExpenses;
     }
 
@@ -107,12 +107,7 @@ public class GameManager : MonoBehaviour
     }
 
     private void LoadMultipliersArray() //Setting first value of all multipliers to 1
-    {
-        for (int i = 0; i < SavableData.skillMultipliersArray.Length; i++)
-        {
-            SavableData.skillMultipliersArray[i] = 1;
-        }
-        
+    {           
         for (int i = 0; i < techMultipliersArray.Length; i++)
         {
             techMultipliersArray[i] = 1;
@@ -139,11 +134,6 @@ public class GameManager : MonoBehaviour
     public void ExitToStartMenu() //Used to got to StartMenuScene
     {
         SceneManager.LoadScene("Start Menu");
-    }         
-        
-    public void NewOrContinueValue(int newOrContinue)
-    {
-        SavableData.newOrContinueGame = newOrContinue;
-        SceneManager.LoadScene("Main Scene");
-    }
+    }                
+    
 }

@@ -41,7 +41,7 @@ public class EcoTechProgressManager : MonoBehaviour
         MoneyEnding();
         if (isTechActive == true)
         {
-            TechProgress(Time.deltaTime * 50 * SavableData.skillMultipliersArray[5] * (1 + PlayerPrefs.GetFloat("TechExpMult")));
+            TechProgress(Time.deltaTime * 50 * (1 + PlayerPrefs.GetFloat("TechExpMult")));
         }
     }
 

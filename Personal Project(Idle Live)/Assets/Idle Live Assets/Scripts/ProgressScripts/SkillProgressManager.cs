@@ -45,7 +45,7 @@ public class SkillProgressManager : MonoBehaviour
         MoneyEnding();
         if (SavableData.skillIsActive == true && gameManagerScr.currentSkill == gameObject.name)
         {
-            SkillProgress(Time.deltaTime * 50 * SavableData.skillMultipliersArray[0] * (1 + PlayerPrefs.GetFloat("SkillExpMult")));
+            SkillProgress(Time.deltaTime * 50 * SavableData.enduranceMultiplierSkillExp * (1 + PlayerPrefs.GetFloat("SkillExpMult")));
         }
     }
 
@@ -64,7 +64,7 @@ public class SkillProgressManager : MonoBehaviour
             lvlValueText.text = currentLvl.ToString();
             expMaxValue *= StartParameters.skillExpHardener; //Each next level need more exprience
             progressBar.maxValue = expMaxValue;
-            SavableData.skillMultipliersArray[skillNumber] += skillMultiplier; //Each next level global multiplier for skillMultipler            
+            SkillGlobalMultiplierIncrease(skillNumber); //Each next level global multiplier for skillMultipler            
             gameManagerScr.skillsCurrentLvlArray[skillNumber] = currentLvl; //updating array storing current lvls of skills
             jobRequirementsScr.skillLvlChangeTrigger = true; //when current level changed we need to refresh Requirements
             skillRequirementsScr.skillLvlChangeTrigger = true; //when current level changed we need to refresh Requirements
@@ -105,6 +105,28 @@ public class SkillProgressManager : MonoBehaviour
         {
             SavableData.skillIsActive = false;
             gameManagerScr.skillExpensesValue = 0;
+        }
+    }
+
+    private void SkillGlobalMultiplierIncrease(int skillNumber)
+    {
+        switch (skillNumber)
+        {
+            case 0: 
+                SavableData.enduranceMultiplierSkillExp += skillMultiplier;
+                break;
+            case 1:
+                SavableData.discMultiplierJobExp += skillMultiplier;
+                break;
+            case 2:
+                SavableData.motivMultiplierJobPay += skillMultiplier;
+                break;
+            case 3:
+                SavableData.negotiationMultiplierEcoIncome += skillMultiplier;
+                break;
+            case 4:
+                SavableData.managementMultiplierEcoCostDecr += skillMultiplier;
+                break;
         }
     }
 }
