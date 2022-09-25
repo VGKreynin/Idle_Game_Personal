@@ -17,7 +17,7 @@ public class LoadingProcess : MonoBehaviour
         for (int i = 0; i < StaticFinalData.jobsArray.Length; i++) //Copying jobs gameobjects to static massive
         {
             
-            StaticFinalData.jobsArray[i].SetActive(SavableData.jobEnabledStatus[i]);
+            StaticFinalData.jobsArray[i].SetActive(SavableData.jobEnabledStatusArray[i]);
         }
     }
 }

@@ -5,8 +5,7 @@ using TMPro;
 
 public class SkillRequirements : MonoBehaviour
 {
-    [HideInInspector] public StartParameters startParameters;
-    [HideInInspector] public GameManager gameManager;
+    private StartParameters startParameters;    
     private TextMeshProUGUI gameObjectText;
     public GameObject[] skillsArray;
 
@@ -21,8 +20,7 @@ public class SkillRequirements : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startParameters = GameObject.Find("GameManager").GetComponent<StartParameters>();
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        startParameters = GameObject.Find("GameManager").GetComponent<StartParameters>();       
 
         skillLvlChangeTrigger = true;
 
@@ -57,11 +55,11 @@ public class SkillRequirements : MonoBehaviour
 
                 if (currentSkillNumber < skillsArray.Length) //visual part of requirements
                 {                    
-                    for (int i = 0; i < startParameters.skillsNamesArray.Length; i++)
+                    for (int i = 0; i < StaticFinalData.skillsNamesArray.Length; i++)
                     {
-                        if (gameManager.skillsCurrentLvlArray[i] < startParameters.skillRequiremetsMultiArray[currentSkillNumber, i])
+                        if (SavableData.skillLvlValueArray[i] < startParameters.skillRequiremetsMultiArray[currentSkillNumber, i])
                         {
-                            gameObjectText.text += startParameters.skillsNamesArray[i] + " " + gameManager.skillsCurrentLvlArray[i] + "/" + startParameters.skillRequiremetsMultiArray[currentSkillNumber, i] + " ";
+                            gameObjectText.text += StaticFinalData.skillsNamesArray[i] + " " + SavableData.skillLvlValueArray[i] + "/" + startParameters.skillRequiremetsMultiArray[currentSkillNumber, i] + " ";
                         }
                     }
                 }
@@ -84,9 +82,9 @@ public class SkillRequirements : MonoBehaviour
         bool triggerX = false;        
         int x = 1;
         
-        for (int i = 0; i < startParameters.skillsNamesArray.Length; i++)
+        for (int i = 0; i < StaticFinalData.skillsNamesArray.Length; i++)
         {
-            if ((gameManager.skillsCurrentLvlArray[i] - startParameters.skillRequiremetsMultiArray[currentSkillNumber, i]) < 0)
+            if ((SavableData.skillLvlValueArray[i] - startParameters.skillRequiremetsMultiArray[currentSkillNumber, i]) < 0)
             {
                 x = 0;
             }

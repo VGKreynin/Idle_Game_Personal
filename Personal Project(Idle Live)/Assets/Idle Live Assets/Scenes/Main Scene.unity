@@ -631,8 +631,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5dd28d7fd9a095418969fa7dd50e1d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startParameters: {fileID: 0}
-  gameManager: {fileID: 0}
   skillsArray:
   - {fileID: 1507758803}
   - {fileID: 395604172}
@@ -26685,7 +26683,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1297644116}
   m_Direction: 2
   m_Value: 0.00000011993293
-  m_Size: 0.5101873
+  m_Size: 0.00000011748935
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -37766,14 +37764,6 @@ MonoBehaviour:
   ecoTechExpensesValue: 0
   ecoInvestmentsExpensesValue: 0
   skillExpensesValue: 0
-  techMultipliersArray:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
   progressBar: {fileID: 0}
   currentSkill: 
   skillsCurrentLvlArray: 
@@ -37824,21 +37814,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f54e3947d13884f44b8665b8ebe30f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jobsNamesArray:
-  - Janitor
-  - Cashier
-  - Jr. Coder
-  - Sr. Coder
-  - PRJM
-  - Head of Dep.
-  - CEO
-  - President
-  skillsNamesArray:
-  - Endurance
-  - Discipline
-  - Motivation
-  - Negotiations
-  - Management
   cashierSkillReq: 0200000003000000000000000000000000000000
   jrCoderSkillReq: 0000000003000000020000000000000000000000
   srCoderSkillReq: 0000000005000000050000000000000000000000
@@ -37944,6 +37919,12 @@ MonoBehaviour:
   - {fileID: 1644914847}
   - {fileID: 980830885}
   - {fileID: 623879933}
+  skillsArrayX:
+  - {fileID: 1507758803}
+  - {fileID: 395604172}
+  - {fileID: 950505409}
+  - {fileID: 1065039394}
+  - {fileID: 561430199}
 --- !u!114 &1782965457
 MonoBehaviour:
   m_ObjectHideFlags: 0

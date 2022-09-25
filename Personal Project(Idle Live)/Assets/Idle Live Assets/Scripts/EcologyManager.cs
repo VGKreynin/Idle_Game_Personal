@@ -34,7 +34,7 @@ public class EcologyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateEcology(Time.deltaTime * basicEcoGain * gameManagerScr.techMultipliersArray[ecoInvestmentNumber] * ecoCurrentLvl);
+        UpdateEcology(Time.deltaTime * basicEcoGain * SavableData.techMultipliersArray[ecoInvestmentNumber] * ecoCurrentLvl);
         MoneyEnding(); //When money become 0, all expenses should be stopped
         if (ecoCurrentLvl != 0)
         {

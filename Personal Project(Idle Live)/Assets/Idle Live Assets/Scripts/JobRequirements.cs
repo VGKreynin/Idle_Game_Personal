@@ -5,29 +5,20 @@ using TMPro;
 
 public class JobRequirements : MonoBehaviour
 {
-    [HideInInspector]public StartParameters startParameters;
-    [HideInInspector]public GameManager gameManager;
-
-    private TextMeshProUGUI gameObjectText;
-    
-    
-
-    [HideInInspector]public bool skillLvlChangeTrigger;   
-
+    private StartParameters startParameters;
+    private TextMeshProUGUI gameObjectText; 
+    [HideInInspector]public bool skillLvlChangeTrigger; 
     
     // Start is called before the first frame update
     void Start()
     {
         //Debug.Log("Jobreq Start");
-        startParameters = GameObject.Find("GameManager").GetComponent<StartParameters>();
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        startParameters = GameObject.Find("GameManager").GetComponent<StartParameters>();        
 
         skillLvlChangeTrigger = true;                     
 
         gameObjectText = gameObject.GetComponent<TextMeshProUGUI>();
-        gameObjectText.text = "";             
-
-        //JobsDeactivation();        
+        gameObjectText.text = ""; 
     }
 
     // Update is called once per frame
@@ -47,23 +38,23 @@ public class JobRequirements : MonoBehaviour
                 if (IsJobRequirementsMet() == true) //logical part of requirements
                 {
                     StaticFinalData.jobsArray[SavableData.jobCurrentReqNumber].SetActive(true); //activating new job
-                    SavableData.jobEnabledStatus[SavableData.jobCurrentReqNumber] = true;
+                    SavableData.jobEnabledStatusArray[SavableData.jobCurrentReqNumber] = true;
                     SavableData.jobCurrentReqNumber += 1;                    
                 }
 
                 if (SavableData.jobCurrentReqNumber < StaticFinalData.jobsArray.Length) //visual part of requirements
                 {
-                    if(SavableData.jobLvlValue[SavableData.jobCurrentReqNumber - 1] < 10) 
+                    if(SavableData.jobLvlValueArray[SavableData.jobCurrentReqNumber - 1] < 10) 
                     {
-                        gameObjectText.text += startParameters.jobsNamesArray[SavableData.jobCurrentReqNumber - 1] + " " + SavableData.jobLvlValue[SavableData.jobCurrentReqNumber - 1] + "/10 ";
+                        gameObjectText.text += StaticFinalData.jobsNamesArray[SavableData.jobCurrentReqNumber - 1] + " " + SavableData.jobLvlValueArray[SavableData.jobCurrentReqNumber - 1] + "/10 ";
                     }
                     
-                    for (int i = 0; i < startParameters.skillsNamesArray.Length; i++)
+                    for (int i = 0; i < StaticFinalData.skillsNamesArray.Length; i++)
                     {
-                        if (gameManager.skillsCurrentLvlArray[i] < startParameters.jobRequiremetsMultiArray[SavableData.jobCurrentReqNumber, i])
+                        if (SavableData.skillLvlValueArray[i] < startParameters.jobRequiremetsMultiArray[SavableData.jobCurrentReqNumber, i])
                         {
 
-                            gameObjectText.text += startParameters.skillsNamesArray[i] + " " + gameManager.skillsCurrentLvlArray[i] + "/" + startParameters.jobRequiremetsMultiArray[SavableData.jobCurrentReqNumber, i] + " ";
+                            gameObjectText.text += StaticFinalData.skillsNamesArray[i] + " " + SavableData.skillLvlValueArray[i] + "/" + startParameters.jobRequiremetsMultiArray[SavableData.jobCurrentReqNumber, i] + " ";
                         }
                     }
                 }
@@ -73,28 +64,20 @@ public class JobRequirements : MonoBehaviour
             
             skillLvlChangeTrigger = false;
         }
-    }
-    
-    private void JobsDeactivation() //Deactivating all jobs accept janitor
-    {
-        for (int i = 1; i < StaticFinalData.jobsArray.Length; i++)
-        {
-            StaticFinalData.jobsArray[i].SetActive(false);            
-        }
-    }
+    }    
 
     private bool IsJobRequirementsMet()
     {
         bool triggerX = false;        
-        int job = SavableData.jobLvlValue[SavableData.jobCurrentReqNumber - 1];
+        int job = SavableData.jobLvlValueArray[SavableData.jobCurrentReqNumber - 1];
         int x = 1;
         if (job < 10)
         {
             x = 0;
         }
-        for (int i = 0; i < startParameters.skillsNamesArray.Length; i++)
+        for (int i = 0; i < StaticFinalData.skillsNamesArray.Length; i++)
         {
-            if ((gameManager.skillsCurrentLvlArray[i] - startParameters.jobRequiremetsMultiArray[SavableData.jobCurrentReqNumber, i]) < 0)
+            if ((SavableData.skillLvlValueArray[i] - startParameters.jobRequiremetsMultiArray[SavableData.jobCurrentReqNumber, i]) < 0)
             {
                 x = 0;
             }

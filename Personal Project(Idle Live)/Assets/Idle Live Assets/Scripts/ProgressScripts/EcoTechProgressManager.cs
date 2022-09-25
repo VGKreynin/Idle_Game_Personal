@@ -53,8 +53,8 @@ public class EcoTechProgressManager : MonoBehaviour
         {
             techProgressValue = 0;
             progressBar.value = 0;
-            currentLvl += 1;            
-            gameManagerScr.techMultipliersArray[techNumber] *= StartParameters.techEcologyUpgradeMultiplier;
+            currentLvl += 1;
+            SavableData.techMultipliersArray[techNumber] *= StartParameters.techEcologyUpgradeMultiplier;
             gameManagerScr.ecoTechExpensesValue -= ecoTechCurrentCost; //We need to erase old value of skill, to assign new value            
             ecoTechCurrentCost *= StartParameters.techCostIncreaser;
             gameManagerScr.ecoTechExpensesValue += ecoTechCurrentCost;            

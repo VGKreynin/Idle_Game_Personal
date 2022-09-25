@@ -43,26 +43,37 @@ public class SaveLoadManager : MonoBehaviour
         public float years;
 
         //Job Data
-        public bool isJobActive;
-        public float[] jobExpCurrentValue = new float[8];
-        public float[] jobExpMaxValue = new float[8];
-        public bool[] jobEnabledStatus = new bool[8];
-        public bool[] jobLvlLoading = new bool[8];
-        public int[] jobLvlValue = new int[8];
-        public int currentJobReqNumber;
+        public bool jobIsActive;
+        public bool[] jobEnabledStatusArray = new bool[8];
+        public float[] jobExpCurrentValueArray = new float[8];
+        public float[] jobExpMaxValueArray = new float[8];        
+        public int[] jobLvlValueArray = new int[8];
+        public int jobCurrentReqNumber;
+        public int jobCurrentSelectedNumber; //USed to show current job on main screen
             //Income
             public float currentBasicJobPayment; //Use to calculate income
-            public float[] jobPayMultiplier = new float[8]; //Use to save current income multiplier from lvl of job
+            public float[] jobPayMultiplierArray = new float[8]; //Use to save current income multiplier from lvl of job
             public float currentJobPayMultiplier; //Use to calculate income
             //Other
             public int currentJobSelectedNumber; //USed to show current job on main screen
 
         //Skill Data
+        public bool skillIsActive;
+        public bool[] skillEnabledStatusArray = new bool[5]; //Activ or not particular job
+        public float[] skillExpCurrentValueArray = new float[5]; //Job current progress values
+        public float[] skillExpMaxValueArray = new float[5]; //Job max values        
+        public int[] skillLvlValueArray = new int[5];
+        public int skillCurrentReqNumber; //According to this number the requiremets shows for next skill
+        public int skillCurrentSelectedNumber; //USed to show current job on main screen
+
         public float enduranceMultiplierSkillExp;
         public float discMultiplierJobExp; //Discipline skill affects exp progress of all jobs
         public float motivMultiplierJobPay; //Motivation skill affects payment progress of all jobs
         public float negotiationMultiplierEcoIncome; //Negotiations skill affects Ecology income
         public float managementMultiplierEcoCostDecr; //Management skill affects Ecology cost decrease
+
+        //Technology Data
+        public float[] techMultipliersArray = new float[8]; //Contains multipliers of all Eco technologies
 
         //Reincarnation Data
         public float jobIncMultR; //Stores the multipluer of job income from Reincarnation upgrade
@@ -85,32 +96,35 @@ public class SaveLoadManager : MonoBehaviour
         data.years = SavableData.years;
 
         //Job Data
-        for (int i = 0; i < SavableData.jobExpMaxValue.Length; i++)
-        {
-            data.jobExpCurrentValue[i] = SavableData.jobExpCurrentValue[i];
-            data.jobExpMaxValue[i] = SavableData.jobExpMaxValue[i];            
-            data.jobLvlValue[i] = SavableData.jobLvlValue[i];
-            data.jobEnabledStatus[i] = SavableData.jobEnabledStatus[i];           
-        }
-        data.isJobActive = SavableData.jobIsActive;
-        data.currentJobReqNumber = SavableData.jobCurrentReqNumber;
-            //Income
-            for (int i = 0; i < SavableData.jobExpMaxValue.Length; i++)
-            {
-                data.jobPayMultiplier[i] = SavableData.jobPayMultiplier[i];
-            }
+        data.jobIsActive = SavableData.jobIsActive;
+        data.jobEnabledStatusArray = SavableData.jobEnabledStatusArray;
+        data.jobExpCurrentValueArray = SavableData.jobExpCurrentValueArray;
+        data.jobExpMaxValueArray = SavableData.jobExpMaxValueArray;
+        data.jobLvlValueArray = SavableData.jobLvlValueArray;        
+        data.jobCurrentReqNumber = SavableData.jobCurrentReqNumber;   
+        data.jobCurrentSelectedNumber = SavableData.jobCurrentSelectedNumber;
+            //Income            
+            data.jobPayMultiplierArray = SavableData.jobPayMultiplierArray;
             data.currentBasicJobPayment = SavableData.currentBasicJobPayment;
-            data.currentJobPayMultiplier = SavableData.currentJobPayMultiplier;
-            //Other
-            data.currentJobSelectedNumber = SavableData.currentJobSelectedNumber;
+            data.currentJobPayMultiplier = SavableData.currentJobPayMultiplier;            
 
         //Skill Data
+        data.skillIsActive = SavableData.skillIsActive;
+        data.skillEnabledStatusArray = SavableData.skillEnabledStatusArray;
+        data.skillExpCurrentValueArray = SavableData.skillExpCurrentValueArray;
+        data.skillExpMaxValueArray = SavableData.skillExpMaxValueArray;
+        data.skillLvlValueArray = SavableData.skillLvlValueArray;
+        data.skillCurrentReqNumber = SavableData.skillCurrentReqNumber;
+        data.skillCurrentSelectedNumber = SavableData.skillCurrentSelectedNumber;
+
         data.enduranceMultiplierSkillExp = SavableData.enduranceMultiplierSkillExp;
         data.discMultiplierJobExp = SavableData.discMultiplierJobExp;
         data.motivMultiplierJobPay = SavableData.motivMultiplierJobPay;
         data.negotiationMultiplierEcoIncome = SavableData.negotiationMultiplierEcoIncome;
         data.managementMultiplierEcoCostDecr = SavableData.managementMultiplierEcoCostDecr;
 
+        //Technology Data
+        data.techMultipliersArray = SavableData.techMultipliersArray;
 
         //Reincarnation Data
         data.jobIncMultR = SavableData.jobIncMultR;
@@ -133,35 +147,43 @@ public class SaveLoadManager : MonoBehaviour
         SavableData.years = data.years;
 
         //Job Data
-        for (int i = 0; i < SavableData.jobExpMaxValue.Length; i++)
-        {
-            SavableData.jobEnabledStatus[i] = data.jobEnabledStatus[i];
-            StaticFinalData.jobsArray[i].SetActive(SavableData.jobEnabledStatus[i]);  
-            SavableData.jobExpCurrentValue[i] = data.jobExpCurrentValue[i];
-            SavableData.jobExpMaxValue[i] = data.jobExpMaxValue[i];
-            SavableData.jobLvlLoading[i] = true;
-            SavableData.jobLvlValue[i] = data.jobLvlValue[i];                                 
+        for (int i = 0; i < SavableData.jobExpMaxValueArray.Length; i++)
+        {           
+            StaticFinalData.jobsArray[i].SetActive(SavableData.jobEnabledStatusArray[i]);    
         }
-        SavableData.jobIsActive = data.isJobActive;
-        SavableData.jobCurrentReqNumber = data.currentJobReqNumber;
+        SavableData.jobIsActive = data.jobIsActive;
+        SavableData.jobEnabledStatusArray = data.jobEnabledStatusArray;        
+        SavableData.jobExpCurrentValueArray = data.jobExpCurrentValueArray;
+        SavableData.jobExpMaxValueArray = data.jobExpMaxValueArray;        
+        SavableData.jobLvlValueArray = data.jobLvlValueArray;        
+        SavableData.jobCurrentReqNumber = data.jobCurrentReqNumber;
+        SavableData.jobCurrentSelectedNumber = data.jobCurrentSelectedNumber;
             //Income
-            for (int i = 0; i < SavableData.jobExpMaxValue.Length; i++)
-            {
-                SavableData.jobPayMultiplier[i] = data.jobPayMultiplier[i];
-            }
+            SavableData.jobPayMultiplierArray = data.jobPayMultiplierArray;
             SavableData.currentBasicJobPayment = data.currentBasicJobPayment;
-            SavableData.currentJobPayMultiplier = data.currentJobPayMultiplier;
-            //Other
-            SavableData.currentJobSelectedNumber = data.currentJobSelectedNumber;
+            SavableData.currentJobPayMultiplier = data.currentJobPayMultiplier;            
 
         //Skill Data
+        for (int i = 0; i < SavableData.skillExpMaxValueArray.Length; i++)
+        {
+            StaticFinalData.skillsArray[i].SetActive(SavableData.skillEnabledStatusArray[i]);           
+        }
+        SavableData.skillIsActive = data.skillIsActive;
+        SavableData.skillEnabledStatusArray = data.skillEnabledStatusArray;
+        SavableData.skillExpCurrentValueArray = data.skillExpCurrentValueArray;
+        SavableData.skillExpMaxValueArray = data.skillExpMaxValueArray;
+        SavableData.skillLvlValueArray = data.skillLvlValueArray;
+        SavableData.skillCurrentReqNumber = data.skillCurrentReqNumber;
+        SavableData.skillCurrentSelectedNumber = data.skillCurrentSelectedNumber;
+
         SavableData.enduranceMultiplierSkillExp = data.enduranceMultiplierSkillExp;
         SavableData.discMultiplierJobExp = data.discMultiplierJobExp;
         SavableData.motivMultiplierJobPay = data.motivMultiplierJobPay;
         SavableData.negotiationMultiplierEcoIncome = data.negotiationMultiplierEcoIncome;
         SavableData.managementMultiplierEcoCostDecr = data.managementMultiplierEcoCostDecr;
 
-
+        //Technology Data
+        data.techMultipliersArray = SavableData.techMultipliersArray;
 
         //Reincarnation Data
         SavableData.jobIncMultR = data.jobIncMultR;
@@ -183,35 +205,54 @@ public class SaveLoadManager : MonoBehaviour
         SavableData.years = 20;
 
         //Job Data
-        for (int i = 0; i < SavableData.jobExpMaxValue.Length; i++)
+        for (int i = 0; i < SavableData.jobExpMaxValueArray.Length; i++)
         {
-            SavableData.jobExpMaxValue[i] = 100;
-            SavableData.jobLvlLoading[i] = true;
-            SavableData.jobExpCurrentValue[i] = 0;
-            SavableData.jobLvlValue[i] = 0;
+            SavableData.jobExpMaxValueArray[i] = 100;           
+            SavableData.jobExpCurrentValueArray[i] = 0;
+            SavableData.jobLvlValueArray[i] = 0;
             StaticFinalData.jobsArray[i].SetActive(false); //Deactivating all jobs            
-            SavableData.jobEnabledStatus[i] = false;            
+            SavableData.jobEnabledStatusArray[i] = false;            
         }
         StaticFinalData.jobsArray[0].SetActive(true); //First job is active from the start
-        SavableData.jobEnabledStatus[0] = true;
+        SavableData.jobEnabledStatusArray[0] = true;
         SavableData.jobCurrentReqNumber = 1;
         SavableData.jobIsActive = false;
+        SavableData.jobCurrentSelectedNumber = 0;
         //Income
-            for (int i = 0; i < SavableData.jobExpMaxValue.Length; i++)
+            for (int i = 0; i < SavableData.jobExpMaxValueArray.Length; i++)
             {
-                SavableData.jobPayMultiplier[i] = 1;
+                SavableData.jobPayMultiplierArray[i] = 1;
             }
             SavableData.currentBasicJobPayment = 0;
-            SavableData.currentJobPayMultiplier = 0;
-            //Other
-            SavableData.currentJobSelectedNumber = 0;
-
+            SavableData.currentJobPayMultiplier = 0;          
+            
         //Skill data
+        for (int i = 0; i < SavableData.skillExpMaxValueArray.Length; i++)
+        {
+            SavableData.skillExpMaxValueArray[i] = 100;            
+            SavableData.skillExpCurrentValueArray[i] = 0;
+            SavableData.skillLvlValueArray[i] = 0;
+            StaticFinalData.skillsArray[i].SetActive(false); //Deactivating all skills           
+            SavableData.skillEnabledStatusArray[i] = false;
+        }
+        StaticFinalData.skillsArray[0].SetActive(true); //First skill is active from the start
+        SavableData.skillEnabledStatusArray[0] = true;
+        SavableData.skillCurrentReqNumber = 1;
+        SavableData.skillIsActive = false;
+        SavableData.skillCurrentSelectedNumber = 0;
+
         SavableData.enduranceMultiplierSkillExp = 1;
         SavableData.discMultiplierJobExp = 1;
         SavableData.motivMultiplierJobPay = 1;
         SavableData.negotiationMultiplierEcoIncome = 1;
         SavableData.managementMultiplierEcoCostDecr = 1;
+
+        //Technology Data
+        for (int i = 0; i < SavableData.techMultipliersArray.Length; i++)
+        {
+            SavableData.techMultipliersArray[i] = 1;
+
+        }
 
         //Reincarnation Data
         SavableData.jobIncMultR = 0;
@@ -233,33 +274,50 @@ public class SaveLoadManager : MonoBehaviour
         SavableData.years = 20;
 
         //Job Data
-        for (int i = 0; i < SavableData.jobExpMaxValue.Length; i++)
+        for (int i = 0; i < SavableData.jobExpMaxValueArray.Length; i++)
         {
-            SavableData.jobExpMaxValue[i] = 100;
-            SavableData.jobLvlLoading[i] = true;
-            SavableData.jobExpCurrentValue[i] = 0;
-            Debug.Log(SavableData.jobExpCurrentValue[i]);
-            SavableData.jobLvlValue[i] = 0;
+            SavableData.jobExpMaxValueArray[i] = 100;            
+            SavableData.jobExpCurrentValueArray[i] = 0;            
+            SavableData.jobLvlValueArray[i] = 0;
             StaticFinalData.jobsArray[i].SetActive(false); //Deactivating all jobs            
-            SavableData.jobEnabledStatus[i] = false;
+            SavableData.jobEnabledStatusArray[i] = false;
         }
         StaticFinalData.jobsArray[0].SetActive(true); //First job is active from the start
-        SavableData.jobEnabledStatus[0] = true;
+        SavableData.jobEnabledStatusArray[0] = true;
         SavableData.jobCurrentReqNumber = 1;
         SavableData.jobIsActive = false;
-        //Income
-        SavableData.currentBasicJobPayment = 0;
-        SavableData.currentJobPayMultiplier = 0;
-        //Other
-        SavableData.currentJobSelectedNumber = 0;
+        SavableData.jobCurrentSelectedNumber = 0;
+            //Income
+            SavableData.currentBasicJobPayment = 0;
+            SavableData.currentJobPayMultiplier = 0;                        
 
         //Skill data
+        for (int i = 0; i < SavableData.skillExpMaxValueArray.Length; i++)
+        {
+            SavableData.skillExpMaxValueArray[i] = 100;            
+            SavableData.skillExpCurrentValueArray[i] = 0;
+            SavableData.skillLvlValueArray[i] = 0;
+            StaticFinalData.skillsArray[i].SetActive(false); //Deactivating all skills            
+            SavableData.skillEnabledStatusArray[i] = false;
+        }
+        StaticFinalData.skillsArray[0].SetActive(true); //First skill is active from the start
+        SavableData.skillEnabledStatusArray[0] = true;
+        SavableData.skillCurrentReqNumber = 1;
+        SavableData.skillIsActive = false;
+        SavableData.skillCurrentSelectedNumber = 0;
+
         SavableData.enduranceMultiplierSkillExp = 1;
         SavableData.discMultiplierJobExp = 1;
         SavableData.motivMultiplierJobPay = 1;
         SavableData.negotiationMultiplierEcoIncome = 1;
         SavableData.managementMultiplierEcoCostDecr = 1;
 
+        //Technology Data
+        for (int i = 0; i < SavableData.techMultipliersArray.Length; i++)
+        {
+            SavableData.techMultipliersArray[i] = 1;
+            
+        }
     }
     public void LoadingGame() //This method used in GameManager at Start, to load data when loading Scene
     {        

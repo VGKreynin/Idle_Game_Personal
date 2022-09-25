@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    private StartParameters startParameters;
     private SaveLoadManager saveLoadScr;
 
     public TextMeshProUGUI moneyValueText;
@@ -19,24 +18,18 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI gameSpeedValueText;
 
     [HideInInspector] public float moneyValue, ecologyValue, incomeValue, totalExpenses;
-    [HideInInspector] public float ecoTechExpensesValue, ecoInvestmentsExpensesValue, skillExpensesValue;
-                
-    public float[] techMultipliersArray;//Contains multipliers of all Eco technologies
+    [HideInInspector] public float ecoTechExpensesValue, ecoInvestmentsExpensesValue, skillExpensesValue;    
 
     private float netValue; 
 
     [HideInInspector] public Slider progressBar;    
     
-    [HideInInspector] public string currentSkill; //Currently selected job and skill    
-
-    [HideInInspector] public int[] skillsCurrentLvlArray; //Storing current lvls of all jobs and skills
+    [HideInInspector] public string currentSkill; //Currently selected job and skill        
         
     public float ecologyToWin; //Emount of Ecology point needed to win the game(WINCONDITION)    
 
     private void Awake()
     {        
-        
-        startParameters = gameObject.GetComponent<StartParameters>();
         saveLoadScr = gameObject.GetComponent<SaveLoadManager>();
 
         saveLoadScr.LoadingGame();
@@ -44,10 +37,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        LoadMultipliersArray(); //Setting first value of all multipliers to 1        
-        skillsCurrentLvlArray = new int[startParameters.skillsNamesArray.Length];
-
-        SkillsLvlZero(); //assign all skills lvl 0 at the start in skillCurrentLvl Array
         IncExpNetVisualise();
         gameSpeedValueText.text = Time.timeScale.ToString("##"); //Loading start text value
     }
@@ -88,7 +77,7 @@ public class GameManager : MonoBehaviour
 
     private void NetCalculation() //Net calculation method
     {
-        incomeValue = SavableData.currentBasicJobPayment * SavableData.jobPayMultiplier[SavableData.currentJobSelectedNumber] * SavableData.motivMultiplierJobPay * (1 + SavableData.jobIncMultR);
+        incomeValue = SavableData.currentBasicJobPayment * SavableData.jobPayMultiplierArray[SavableData.jobCurrentSelectedNumber] * SavableData.motivMultiplierJobPay * (1 + SavableData.jobIncMultR);
         netValue = incomeValue - TotalExpenses();
     }
 
@@ -96,23 +85,7 @@ public class GameManager : MonoBehaviour
     {
         totalExpenses = (ecoTechExpensesValue * (1 + PlayerPrefs.GetFloat("TechCostMult"))) + (ecoInvestmentsExpensesValue / SavableData.managementMultiplierEcoCostDecr) + skillExpensesValue;
         return totalExpenses;
-    }
-
-    private void SkillsLvlZero() //assign all skills lvl 0 at the start in skillCurrentLvl Array
-    {
-        for (int i = 0; i < startParameters.skillsNamesArray.Length; i++)
-        {
-            skillsCurrentLvlArray[i] = 0;
-        }
-    }
-
-    private void LoadMultipliersArray() //Setting first value of all multipliers to 1
-    {           
-        for (int i = 0; i < techMultipliersArray.Length; i++)
-        {
-            techMultipliersArray[i] = 1;
-        }        
-    }     
+    }        
 
     public void GameSpeed(int addSpeed)
     {

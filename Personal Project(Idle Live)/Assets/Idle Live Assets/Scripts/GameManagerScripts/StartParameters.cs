@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class StartParameters : MonoBehaviour
 {
-    public string[] jobsNamesArray;
-    public string[] skillsNamesArray;
-    
+        
     [Header("Job Required Skills")]
     public int[] cashierSkillReq;
     public int[] jrCoderSkillReq, srCoderSkillReq, prjmSkillReq, hodSkillReq, ceoSkillReq, presidentSkillReq;
@@ -38,8 +36,8 @@ public class StartParameters : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        jobRequiremetsMultiArray = new int[8, (skillsNamesArray.Length + 1)];
-        skillRequiremetsMultiArray = new int[5, skillsNamesArray.Length];
+        jobRequiremetsMultiArray = new int[8, (StaticFinalData.skillsNamesArray.Length + 1)];
+        skillRequiremetsMultiArray = new int[5, StaticFinalData.skillsNamesArray.Length];
         LoadingJobMultiArray();
         LoadingSkillMultiArray();
         LoadValueForStaticVar();
@@ -48,7 +46,7 @@ public class StartParameters : MonoBehaviour
     private void LoadingJobMultiArray()
     {
         
-            for (int i = 0; i < skillsNamesArray.Length; i++)
+            for (int i = 0; i < StaticFinalData.skillsNamesArray.Length; i++)
         {
             jobRequiremetsMultiArray[1, i] = cashierSkillReq[i];
             jobRequiremetsMultiArray[2, i] = jrCoderSkillReq[i];
@@ -62,7 +60,7 @@ public class StartParameters : MonoBehaviour
 
     private void LoadingSkillMultiArray()
     {
-        for (int i = 0; i < skillsNamesArray.Length; i++)
+        for (int i = 0; i < StaticFinalData.skillsNamesArray.Length; i++)
         {
             skillRequiremetsMultiArray[1, i] = disciplineSkillReq[i];
             skillRequiremetsMultiArray[2, i] = motivationSkillReq[i];
