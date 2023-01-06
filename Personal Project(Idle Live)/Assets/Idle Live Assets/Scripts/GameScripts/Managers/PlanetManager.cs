@@ -9,8 +9,7 @@ public class PlanetManager : MonoBehaviour
     public GameObject[] planetStatusArray; //contains all different status objects
     public Slider[] sliderArray;//contains sliders of different condition objects
     private Slider planetSlider;
-    public TextMeshProUGUI[] valueText; // 0 is planet
-    public MenuChooser menuChooserScr;
+    public TextMeshProUGUI[] valueText; // 0 is planet   
 
     private float atmosphereKoef, oceanKoef, soilKoef; //how fast condition objects automatically decreased
     private float planetKoef; //How planet condition affects all conditions

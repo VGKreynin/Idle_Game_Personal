@@ -38,6 +38,13 @@ public class SaveLoadManager : MonoBehaviour
     [Serializable]
     class SaveGameData
     {
+        //Main Variables
+        public float ecologyPoints;
+        public float reincarnationPoints;
+        public float MoodValue;
+        public float minMoodValue;
+        public float maxMoodValue;
+
         //Time data        
         public float days;
         public float years;
@@ -91,6 +98,13 @@ public class SaveLoadManager : MonoBehaviour
 
     private void SaveDataUpdate()
     {
+        //Main Variables
+        data.ecologyPoints = SavableData.ecologyPoints;
+        data.reincarnationPoints = SavableData.reincarnationPoints;
+        data.MoodValue = SavableData.MoodValue;
+        data.minMoodValue = SavableData.minMoodValue;
+        data.maxMoodValue = SavableData.maxMoodValue;
+
         //Timer Data
         data.days = SavableData.days;
         data.years = SavableData.years;
@@ -141,7 +155,14 @@ public class SaveLoadManager : MonoBehaviour
     }
     
     private void LoadDataUpdate()
-    {        
+    {
+        //Main Variables
+        SavableData.ecologyPoints = data.ecologyPoints;
+        SavableData.reincarnationPoints = data.reincarnationPoints;
+        SavableData.MoodValue = data.MoodValue;
+        SavableData.minMoodValue = data.minMoodValue;
+        SavableData.maxMoodValue = data.maxMoodValue;
+
         //Timer Data        
         SavableData.days = data.days;
         SavableData.years = data.years;
@@ -200,6 +221,13 @@ public class SaveLoadManager : MonoBehaviour
         
     private void NewGameDataLoad() //Loading start values of all saveble variables
     {
+        //Main Variables
+        SavableData.ecologyPoints = 0;
+        SavableData.reincarnationPoints = 0;
+        SavableData.MoodValue = 50;
+        SavableData.minMoodValue = 10;
+        SavableData.maxMoodValue = 100;
+
         //Timer Data
         SavableData.days = 0;
         SavableData.years = 20;
@@ -269,6 +297,12 @@ public class SaveLoadManager : MonoBehaviour
 
     public static void ReincarnationDataLoad() //Reset all Data, except Reincarnation Data
     {
+        //Main Variables
+        SavableData.ecologyPoints = 0;        
+        SavableData.MoodValue = 50;
+        SavableData.minMoodValue = 10;
+        SavableData.maxMoodValue = 100;
+
         //Timer Data
         SavableData.days = 0;
         SavableData.years = 20;

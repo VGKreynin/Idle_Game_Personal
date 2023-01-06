@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class ReincarnationManager : MonoBehaviour
 {
-    public TextMeshProUGUI ecoPointsText;
+    public TextMeshProUGUI reincarnationPointsText;
 
     [Header("JOB INCOME BUTTON")] //Parameters for this button
     public int[] jobIncomeLvlCost; //The cost of upgrage in EcoPoints
@@ -36,25 +36,20 @@ public class ReincarnationManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Test eco Points to start
-        int x = 100;
-        PlayerPrefs.SetInt("Ecology Points", x);
-
+        SavableData.reincarnationPoints = 1000; //Test
         LoadingReincarnationScreen();
     }    
 
     public void ReincarnationUpgrades(int x)
     {
         //JOB INCOME
-        if (x == 1 && jobIncomeLvlCost[SavableData.jobIncMultLvlR] <= PlayerPrefs.GetInt("Ecology Points")) //Buying upgrade
+        if (x == 1 && jobIncomeLvlCost[SavableData.jobIncMultLvlR] <= SavableData.reincarnationPoints) //Buying upgrade
         {
-            int y = PlayerPrefs.GetInt("Ecology Points");
-            y -= jobIncomeLvlCost[SavableData.jobIncMultLvlR];
-            PlayerPrefs.SetInt("Ecology Points", y);
-            ecoPointsText.text = y.ToString();
+            SavableData.reincarnationPoints -= jobIncomeLvlCost[SavableData.jobIncMultLvlR];            
+            reincarnationPointsText.text = SavableData.reincarnationPoints.ToString();
             SavableData.jobIncMultR += 0.05f;
             SavableData.jobIncMultLvlR += 1;                      
-            jobIncText.text = "X: +" + (SavableData.jobIncMultR * 100).ToString("##") + "%"; //Updating gain % text
+            jobIncText.text = "X: + " + (SavableData.jobIncMultR * 100).ToString("##") + "%"; //Updating gain % text
             jobIncLvlText.text = "Lvl: " + SavableData.jobIncMultLvlR + "/10"; //Updating lvl text
         }
         if (SavableData.jobIncMultLvlR == 10)
@@ -67,15 +62,13 @@ public class ReincarnationManager : MonoBehaviour
         }
 
         //JOB EXP
-        if (x == 2 && jobExpLvlCost[SavableData.jobExpMultLvlR] <= PlayerPrefs.GetInt("Ecology Points")) //Buying upgrade
+        if (x == 2 && jobExpLvlCost[SavableData.jobExpMultLvlR] <= SavableData.reincarnationPoints) //Buying upgrade
         {
-            int y = PlayerPrefs.GetInt("Ecology Points");
-            y -= jobExpLvlCost[SavableData.jobExpMultLvlR];
-            PlayerPrefs.SetInt("Ecology Points", y);
-            ecoPointsText.text = y.ToString();
+            SavableData.reincarnationPoints -= jobExpLvlCost[SavableData.jobExpMultLvlR];
+            reincarnationPointsText.text = SavableData.reincarnationPoints.ToString();
             SavableData.jobExpMultR += 0.05f;
             SavableData.jobExpMultLvlR += 1;                     
-            jobExpText.text = "X: +" + (SavableData.jobExpMultR * 100).ToString("##") + "%"; //Updating gain % text
+            jobExpText.text = "X: + " + (SavableData.jobExpMultR * 100).ToString("##") + "%"; //Updating gain % text
             jobExpLvlText.text = "Lvl: " + SavableData.jobExpMultLvlR + "/10"; //Updating lvl text
         }
         if (SavableData.jobExpMultLvlR == 10)
@@ -88,15 +81,13 @@ public class ReincarnationManager : MonoBehaviour
         }
 
         //SKILL EXP
-        if (x == 3 && skillExpLvlCost[SavableData.skillExpMultLvlR] <= PlayerPrefs.GetInt("Ecology Points")) //Buying upgrade
+        if (x == 3 && skillExpLvlCost[SavableData.skillExpMultLvlR] <= SavableData.reincarnationPoints) //Buying upgrade
         {
-            int y = PlayerPrefs.GetInt("Ecology Points");
-            y -= skillExpLvlCost[SavableData.skillExpMultLvlR];
-            PlayerPrefs.SetInt("Ecology Points", y);
-            ecoPointsText.text = y.ToString();
+            SavableData.reincarnationPoints -= skillExpLvlCost[SavableData.skillExpMultLvlR];            
+            reincarnationPointsText.text = SavableData.reincarnationPoints.ToString();
             SavableData.skillExpMultR += 0.05f;
             SavableData.skillExpMultLvlR += 1;            
-            skillExpText.text = "X: +" + (SavableData.skillExpMultR * 100).ToString("##") + "%"; //Updating gain % text
+            skillExpText.text = "X: + " + (SavableData.skillExpMultR * 100).ToString("##") + "%"; //Updating gain % text
             skillExpLvlText.text = "Lvl: " + SavableData.skillExpMultLvlR + "/10"; //Updating lvl text
         }
         if (SavableData.skillExpMultLvlR == 10)
@@ -109,15 +100,13 @@ public class ReincarnationManager : MonoBehaviour
         }
 
         //TECH EXP
-        if (x == 4 && techExpLvlCost[SavableData.techExpMultLvlR] <= PlayerPrefs.GetInt("Ecology Points")) //Buying upgrade
+        if (x == 4 && techExpLvlCost[SavableData.techExpMultLvlR] <= SavableData.reincarnationPoints) //Buying upgrade
         {
-            int y = PlayerPrefs.GetInt("Ecology Points");
-            y -= techExpLvlCost[SavableData.techExpMultLvlR];
-            PlayerPrefs.SetInt("Ecology Points", y);
-            ecoPointsText.text = y.ToString();
+            SavableData.reincarnationPoints -= techExpLvlCost[SavableData.techExpMultLvlR];            
+            reincarnationPointsText.text = SavableData.reincarnationPoints.ToString();
             SavableData.techExpMultR += 0.05f;
             SavableData.techExpMultLvlR += 1;            
-            techExpText.text = "X: +" + (SavableData.techExpMultR * 100).ToString("##") + "%"; //Updating gain % text
+            techExpText.text = "X: + " + (SavableData.techExpMultR * 100).ToString("##") + "%"; //Updating gain % text
             techExpLvlText.text = "Lvl: " + SavableData.techExpMultLvlR + "/10"; //Updating lvl text
         }
         if (SavableData.techExpMultLvlR == 10)
@@ -130,15 +119,13 @@ public class ReincarnationManager : MonoBehaviour
         }
 
         //TECH COST
-        if (x == 5 && techCostLvlCost[SavableData.techCostMultLvlR] <= PlayerPrefs.GetInt("Ecology Points")) //Buying upgrade
+        if (x == 5 && techCostLvlCost[SavableData.techCostMultLvlR] <= SavableData.reincarnationPoints) //Buying upgrade
         {
-            int y = PlayerPrefs.GetInt("Ecology Points");
-            y -= techExpLvlCost[SavableData.techCostMultLvlR];
-            PlayerPrefs.SetInt("Ecology Points", y);
-            ecoPointsText.text = y.ToString();
+            SavableData.reincarnationPoints -= techExpLvlCost[SavableData.techCostMultLvlR];            
+            reincarnationPointsText.text = SavableData.reincarnationPoints.ToString();
             SavableData.techCostMultR -= 0.01f;
             SavableData.techCostMultLvlR += 1;
-            techCostText.text = "X: " + (SavableData.techCostMultR * 100).ToString("##") + "%"; //Updating gain % text
+            techCostText.text = "X: - " + (Mathf.Abs(SavableData.techCostMultR * 100)).ToString("##") + "%"; //Updating gain % text
             techCostLvlText.text = "Lvl: " + SavableData.techCostMultLvlR + "/10"; //Updating lvl text
         }
         if (SavableData.techCostMultLvlR == 10)
@@ -153,7 +140,7 @@ public class ReincarnationManager : MonoBehaviour
 
     public void HardResetPrefs()
     {
-        PlayerPrefs.DeleteKey("Ecology Points");
+        SavableData.reincarnationPoints = 0;
         SavableData.jobIncMultR = 0;
         SavableData.jobIncMultLvlR = 0;
         SavableData.jobExpMultR = 0;
@@ -171,11 +158,11 @@ public class ReincarnationManager : MonoBehaviour
         // JOB INCOME 
         if (SavableData.jobIncMultR == 0)
         {
-            jobIncText.text = "X: +0%"; //Updating gain % text
+            jobIncText.text = "X: + 0%"; //Updating gain % text
         }
         else
         {
-            jobIncText.text = "X: " + (SavableData.jobIncMultR * 100).ToString("##") + "%"; //Updating gain % text
+            jobIncText.text = "X: + " + (SavableData.jobIncMultR * 100).ToString("##") + "%"; //Updating gain % text
         }
         jobIncLvlText.text = "Lvl: " + SavableData.jobIncMultLvlR + "/10"; //Updating lvl text
         if (SavableData.jobIncMultLvlR < 10)
@@ -187,8 +174,15 @@ public class ReincarnationManager : MonoBehaviour
             jobUpgradeButton.SetActive(false);
         }
 
-        // JOB EXP        
-        jobExpText.text = "X: " + (SavableData.jobExpMultR * 100 + 100).ToString("##") + "%"; //Updating gain % text
+        // JOB EXP    
+        if (SavableData.jobExpMultR == 0)
+        {
+            jobExpText.text = "X: + 0%"; //Updating gain % text
+        }
+        else
+        {
+            jobExpText.text = "X: + " + (SavableData.jobExpMultR * 100).ToString("##") + "%"; //Updating gain % text
+        }        
         jobExpLvlText.text = "Lvl: " + SavableData.jobExpMultLvlR + "/10"; //Updating lvl text
         if (SavableData.jobExpMultLvlR < 10)
         {
@@ -199,8 +193,15 @@ public class ReincarnationManager : MonoBehaviour
             jobExpButton.SetActive(false);
         }
 
-        // SKILL EXP        
-        skillExpText.text = "X: " + (SavableData.skillExpMultR * 100 + 100).ToString("##") + "%"; //Updating gain % text
+        // SKILL EXP 
+        if (SavableData.skillExpMultR == 0)
+        {
+            skillExpText.text = "X: + 0%"; //Updating gain % text
+        }
+        else
+        {
+            skillExpText.text = "X: + " + (SavableData.skillExpMultR * 100).ToString("##") + "%"; //Updating gain % text
+        }        
         skillExpLvlText.text = "Lvl: " + SavableData.skillExpMultLvlR + "/10"; //Updating lvl text
         if (SavableData.skillExpMultLvlR < 10)
         {
@@ -211,8 +212,15 @@ public class ReincarnationManager : MonoBehaviour
             skillExpButton.SetActive(false);
         }
 
-        // TECH EXP        
-        techExpText.text = "X: " + (SavableData.techExpMultR * 100 + 100).ToString("##") + "%"; //Updating gain % text
+        // TECH EXP  
+        if (SavableData.techExpMultR == 0)
+        {
+            techExpText.text = "X: + 0%"; //Updating gain % text
+        }
+        else
+        {
+            techExpText.text = "X: + " + (SavableData.techExpMultR * 100).ToString("##") + "%"; //Updating gain % text
+        }
         techExpLvlText.text = "Lvl: " + SavableData.techExpMultLvlR + "/10"; //Updating lvl text
         if (SavableData.techExpMultLvlR < 10)
         {
@@ -223,8 +231,15 @@ public class ReincarnationManager : MonoBehaviour
             techExpButton.SetActive(false);
         }
 
-        // TECH COST        
-        techCostText.text = "X: " + (SavableData.techCostMultR * 100 + 100).ToString("##") + "%"; //Updating gain % text
+        // TECH COST   
+        if (SavableData.techCostMultR == 0)
+        {            
+            techCostText.text = "X: - 0%"; //Updating gain % text            
+        }
+        else
+        {
+            techCostText.text = "X: - " + (Mathf.Abs(SavableData.techCostMultR * 100)).ToString("##") + "%"; //Updating gain % text
+        }        
         techCostLvlText.text = "Lvl: " + SavableData.techCostMultLvlR + "/10"; //Updating lvl text
         if (SavableData.techCostMultLvlR < 10)
         {

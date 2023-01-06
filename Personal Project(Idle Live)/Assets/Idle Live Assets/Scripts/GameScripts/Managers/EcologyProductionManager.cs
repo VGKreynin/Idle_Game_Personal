@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class EcologyManager : MonoBehaviour
+public class EcologyProductionManager : MonoBehaviour
 {
     
     public TextMeshProUGUI ecologyLvlText;
@@ -49,7 +49,7 @@ public class EcologyManager : MonoBehaviour
 
     private void UpdateEcology(float addProgress)
     {
-        gameManagerScr.ecologyValue += addProgress;
+        SavableData.ecologyPoints += addProgress;
         planetManagerScr.sliderArray[ecoInvestmentNumber].value += addProgress;
     }
 

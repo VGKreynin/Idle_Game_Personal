@@ -8,7 +8,7 @@ public class MenuChooser : MonoBehaviour
 {
     public CanvasGroup[] menuArray;
     
-    //public TextMeshProUGUI ecoPointsText;
+    [SerializeField]private TextMeshProUGUI reincarnationPointsText;
 
     
 
@@ -45,20 +45,21 @@ public class MenuChooser : MonoBehaviour
         menuArray[chosenMenu].blocksRaycasts = true;
     }
 
-    /*
+    
     public void ReincarnationCanvas()
     {
         for (int i = 0; i < menuArray.Length; i++)
         {
-            menuCanvasCompArray[i].enabled = false;
-            menuGraphicrayCompArray[i].enabled = false;
+            menuArray[i].alpha = 0;
+            menuArray[i].interactable = false;
+            menuArray[i].blocksRaycasts = false;
         }
-        menuCanvasCompArray[7].enabled = true;
-        menuGraphicrayCompArray[7].enabled = true;
-        Time.timeScale = 0;        
-        int x = PlayerPrefs.GetInt("Ecology Points");
-        x += Mathf.RoundToInt(gameManagerScr.ecologyValue) / 10;        
-        PlayerPrefs.SetInt("Ecology Points", x);
-        ecoPointsText.text = x.ToString();
-    }*/
+        menuArray[5].alpha = 1;
+        menuArray[5].interactable = true;
+        menuArray[5].blocksRaycasts = true;
+        Time.timeScale = 0;  
+        
+        SavableData.reincarnationPoints += Mathf.Round(SavableData.ecologyPoints / 100);         
+        reincarnationPointsText.text = SavableData.reincarnationPoints.ToString();        
+    }
 }

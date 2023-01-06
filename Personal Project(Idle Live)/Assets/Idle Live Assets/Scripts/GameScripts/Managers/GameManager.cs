@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI netValueText;
     public TextMeshProUGUI gameSpeedValueText;
 
-    [HideInInspector] public float moneyValue, ecologyValue, incomeValue, totalExpenses;
+    [HideInInspector] public float moneyValue, incomeValue, totalExpenses;
     [HideInInspector] public float ecoTechExpensesValue, ecoInvestmentsExpensesValue, skillExpensesValue;    
 
     private float netValue; 
@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
         }
         incomeValueText.text = incomeValue.ToString("##.#");
         expensesValueText.text = TotalExpenses().ToString("##.#");
-        ecologyValueText.text = ecologyValue.ToString("##.#");
+        ecologyValueText.text = SavableData.ecologyPoints.ToString("##.#");
     }
 
     private void NetCalculation() //Net calculation method

@@ -8,7 +8,14 @@ public static class SavableData //Put here every variable that should be in Save
 {
     public static int newOrContinueGame = 0; //Use to understand which mode is chosen. New Game or Continue Game
     public static int openedMenu = 0;// What screen is currently opened
-    
+
+    //Main Variables
+    public static float ecologyPoints;
+    public static float reincarnationPoints;
+    public static float MoodValue;
+    public static float minMoodValue;
+    public static float maxMoodValue;
+
     //Timer Data
     public static float days;
     public static float years;
